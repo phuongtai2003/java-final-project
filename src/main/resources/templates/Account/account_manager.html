@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/output.css">
+</head>
+<body>
+
+<div class="flex justify-between items-center text-white font-thin p-2 text-4xl bg-blue-500">
+    <h1 class="text-start">
+        <a href="/">Account Manager</a>
+    </h1>
+    <div class="mr-4 text-sm mt-4">
+        <a class="text-lg px-1 border-2 font-mono border-white rounded-full text-white hover:bg-white hover:text-blue-500 transition ease-in-out duration-400" href="#">Log in</a>
+        <a class="text-lg px-1 ml-2 border-2 font-mono border-white rounded-full text-white hover:bg-white hover:text-blue-500 transition ease-in-out duration-400" href="#">Sign up</a>
+    </div>
+</div>
+
+<div class="grid grid-cols-4">
+    <div class="col-span-1 border-r-2 border-blue-500 mt-2">
+        <nav class="ml-4 flex justify-start mt-2" >
+            <ul>
+                <li>
+                    <a href="#" class="pr-2 text-blue-400 text-sm">
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="pr-2 text-blue-400 text-sm">
+                        <span>User list</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <main class="col-span-3">
+        <div class=" ml-2 mt-4 text-blue-600 border-b-2 border-e-gray-500">
+            <h2>User List</h2>
+        </div>
+
+        <div class="ml-2 mt-4">
+            <a href="#" id="addUserButton" class="bg-green-500 text-white px-2 py-1 rounded-full">Add New User</a>
+        </div>
+
+        <div class="flex items-center m-4">
+            <label for="search" class="mr-2">Search:</label>
+            <input type="text" id="search" placeholder="Enter Username" class="border-2 border-gray-300 px-2 py-1 rounded-md">
+            <a class="ml-2 text-lg px-1 border-2 font-mono border-blue-500 rounded-full text-blue-500 hover:bg-blue-500 hover:text-white transition ease-in-out duration-400" href="#">Search</a>
+        </div>
+
+
+        <table class="ml-4 mr-8 mt-4 w-11/12">
+            <thead>
+            <tr>
+                <th class="border-2 border-gray-500">ID</th>
+                <th class="border-2 border-gray-500">Name</th>
+                <th class="border-2 border-gray-500">Email</th>
+                <th class="border-2 border-gray-500">Phone</th>
+                <th class="border-2 border-gray-500">Role</th>
+                <th class="border-2 border-gray-500 ">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="border-2 border-gray-300">1</td>
+                <td class="border-2 border-gray-300">John Doe</td>
+                <td class="border-2 border-gray-300">john.doe@example.com</td>
+                <td class="border-2 border-gray-300">123-456-7890</td>
+                <td class="border-2 border-gray-300">Admin</td>
+                <td class="border-2 border-gray-300 flex justify-between">
+                    <button class="bg-blue-500 text-white px-2 py-1 rounded-full hover:border-blue-500 hover:bg-white hover:text-blue-500">Update</button>
+                    <button class="bg-red-500 text-white px-2 py-1 rounded-full hover:border-red-500 hover:bg-white hover:text-red-500">Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="border-2 border-gray-300">2</td>
+                <td class="border-2 border-gray-300">Jane Smith</td>
+                <td class="border-2 border-gray-300">jane.smith@example.com</td>
+                <td class="border-2 border-gray-300">987-654-3210</td>
+                <td class="border-2 border-gray-300">User</td>
+                <td class="border-2 border-gray-300 flex justify-between">
+                    <button class="bg-blue-500 text-white px-2 py-1 rounded-full">Update</button>
+                    <button class="bg-red-500 text-white px-2 py-1 rounded-full">Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="border-2 border-gray-300">3</td>
+                <td class="border-2 border-gray-300">Alice Johnson</td>
+                <td class="border-2 border-gray-300">alice.johnson@example.com</td>
+                <td class="border-2 border-gray-300">555-123-4567</td>
+                <td class="border-2 border-gray-300">User</td>
+                <td class="border-2 border-gray-300 flex justify-between">
+                    <button class="bg-blue-500 text-white px-2 py-1 rounded-full">Update</button>
+                    <button class="bg-red-500 text-white px-2 py-1 rounded-full">Delete</button>
+                </td>
+
+            </tbody>
+        </table>
+    </main>
+</div>
+
+</body>
+</html>
