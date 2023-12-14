@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salesperson Detail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto my-8 p-8 bg-white rounded shadow-md">
+    <h2 class="text-2xl font-semibold mb-6">Salesperson Detail</h2>
+    <div>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <p class="text-gray-600">ID:</p>
+                <p class="font-bold text-gray-800" th:text="${salesperson.id}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Name:</p>
+                <p class="font-bold text-gray-800" th:text="${salesperson.name}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Email:</p>
+                <p class="font-bold text-gray-800" th:text="${salesperson.email}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Password:</p>
+                <p class="font-bold text-gray-800" th:text="${salesperson.password}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Address:</p>
+                <p class="font-bold text-gray-800" th:text="${salesperson.address}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Phone:</p>
+                <p class="font-bold text-gray-800" th:text="${salesperson.phone}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Gender:</p>
+                <p class="font-bold text-gray-800" th:text="${salesperson.gender}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Image:</p>
+                <p class="font-bold text-gray-800" th:text="${salesperson.image}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Salary:</p>
+                <p class="font-bold text-gray-800" th:text="${salesperson.salary}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Status:</p>
+                <p class="font-bold text-gray-800" th:text="${salesperson.status} ? 'lock' : 'unlock'"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Date Created:</p>
+                <p class="font-bold text-gray-800" th:text="${salesperson.dateCreated}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

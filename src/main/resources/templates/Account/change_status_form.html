@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div>
+    <h2>Change Status</h2>
+
+    <p>Are you sure you want to change the status of <span th:text="${salesperson.name}"></span>?</p>
+
+    <form th:action="@{/account/changeStatus/{id}(id=${salesperson.id})}" method="post">
+        <input type="hidden" name="confirm" value="true">
+        <button type="submit">Yes, Change Status</button>
+    </form>
+
+    <a th:href="@{/account}" class="ml-2">Cancel</a>
+</div>
+
+</body>
+</html>
