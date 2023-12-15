@@ -30,7 +30,7 @@ public class Salesperson {
 
     private String address;
 
-    @Pattern(regexp = "\\d{3}-\\d{3}-\\d{4}", message = "Phone must be in the format xxx-xxx-xxxx")
+    @Pattern(regexp = "0\\d{9}", message = "Phone must be ten number and begin with 0")
     private String phone;
     private String gender;
     private String image;

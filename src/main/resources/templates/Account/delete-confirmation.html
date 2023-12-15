@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+<div class="max-w-md p-6 bg-white rounded-md shadow-md">
+    <h2 class="text-2xl font-bold text-red-500">Delete Salesperson</h2>
+
+    <p class="mt-4">Are you sure you want to delete <span th:text="${salesperson.name}"></span>?</p>
+
+    <form th:action="@{/account/delete/{id}(id=${salesperson.id})}" method="post" class="mt-4">
+        <input type="hidden" name="confirm" value="true">
+        <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded-md">Yes, Delete</button>
+    </form>
+
+    <a th:href="@{/account}" class="block mt-2 text-blue-500">Cancel</a>
+</div>
+
+</body>
+
+</html>

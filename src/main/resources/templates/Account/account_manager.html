@@ -80,7 +80,7 @@
                 <td class="border-2 border-gray-300 flex justify-between">
                     <a th:href="@{/account/detail/{id}(id=${salesperson.id})}" class="bg-green-500 text-white px-2 py-1 rounded-full ">Detail</a>
                     <a th:href="@{/account/changeStatus/{id}(id=${salesperson.id})}" class="bg-blue-500 text-white px-2 py-1 rounded-full ">Change Status</a>
-                    <button class="bg-red-500 text-white px-2 py-1 rounded-full" onclick="showConfirmationDialog(/*[[${salesperson.id}]]*/)">Delete</button>
+                    <a th:href="@{/account/delete/{id}(id=${salesperson.id})}" class="bg-red-500 text-white px-2 py-1 rounded-full ">Delete</a>
             </tbody>
         </table>
     </main>

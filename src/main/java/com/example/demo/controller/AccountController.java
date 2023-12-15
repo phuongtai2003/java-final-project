@@ -74,16 +74,30 @@ public class AccountController {
         return "redirect:/account";
     }
 
+
     @GetMapping("/delete/{id}")
-    public String showDeleteConfirmationForm(@PathVariable int id, Model model) {
-        Optional<Salesperson> salesperson = service.getSalespersonById(id);
-        model.addAttribute("salesperson", salesperson.orElse(null));
-        return "Account/confirm_delete";
+    public String showDeleteConfirmation(@PathVariable int id, Model model) {
+        Salesperson salesperson = service.getSalespersonById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid salesperson ID: " + id));
+        model.addAttribute("salesperson", salesperson);
+        return "Account/delete-confirmation";
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteSalesperson(@PathVariable int id) {
-        service.deleteSalespersonById(id);
+    public String deleteSalesperson(@PathVariable int id, @RequestParam("confirm") boolean confirm, Model model) {
+        Optional<Salesperson> optionalSalesperson = service.getSalespersonById(id);
+
+        if (optionalSalesperson.isPresent()) {
+            Salesperson salesperson = optionalSalesperson.get();
+
+            if (confirm) {
+                service.deleteSalespersonById(salesperson.getId());
+                model.addAttribute("confirmationMessage", "Delete successfully.");
+            } else {
+                model.addAttribute("confirmationMessage", "Delete canceled.");
+            }
+        }
+
         return "redirect:/account";
     }
 }

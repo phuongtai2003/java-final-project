@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Salesperson</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-
 </head>
-<body class="bg-gray-100">
 
-<div class="container mx-auto my-8 p-8 bg-white rounded shadow-md">
+<body class="bg-gray-100 flex items-center justify-center min-h-half-screen">
+
+<div class="max-w-md p-8 bg-white rounded shadow-md w-full my-4 overflow-y-auto">
     <h2 class="text-2xl font-semibold mb-6">Add New Salesperson</h2>
     <form th:action="@{/account/add}" method="post" th:object="${newSalesperson}" class="space-y-4">
-        <div>
+
+    <div>
             <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
             <input type="text" id="name" name="name" th:field="*{name}" class="mt-1 p-2 w-full border rounded-md">
         </div>
@@ -34,18 +36,21 @@
 
         <div>
             <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number:</label>
-            <input type="text" id="phone" name="phone" th:field="*{phone}" pattern="\d{3}-\d{3}-\d{4}" title="Phone must be in the format xxx-xxx-xxxx"
-                   class="mt-1 p-2 w-full border rounded-md">
+            <input type="text" id="phone" name="phone" th:field="*{phone}" pattern="0\d{9}" title="Phone must be ten numbers and begin with 0" class="mt-1 p-2 w-full border rounded-md">
         </div>
 
         <div>
             <label for="gender" class="block text-sm font-medium text-gray-700">Gender:</label>
-            <input type="text" id="gender" name="gender" th:field="*{gender}" class="mt-1 p-2 w-full border rounded-md">
+            <select id="gender" name="gender" th:field="*{gender}" class="mt-1 p-2 w-full border rounded-md">
+                <option value="FEMALE">Female</option>
+                <option value="MALE">Male</option>
+                <option value="Other">Other</option>
+            </select>
         </div>
 
         <div>
-            <label for="image" class="block text-sm font-medium text-gray-700">Image URL:</label>
-            <input type="text" id="image" name="image" th:field="*{image}" class="mt-1 p-2 w-full border rounded-md">
+            <label for="image" class="block text-sm font-medium text-gray-700">Image Upload:</label>
+            <input type="file" id="image" name="image" th:field="*{image}" class="mt-1 p-2 w-full border rounded-md">
         </div>
 
         <div>
@@ -54,19 +59,16 @@
         </div>
 
         <div class="flex items-center">
-            <label for="salary" class="block text-sm font-medium text-gray-700">Status:</label>
+            <label for="status" class="block text-sm font-medium text-gray-700">Status:</label>
             <input type="checkbox" id="status" name="status" th:field="*{status}" class="mt-1 p-2 border rounded-md">
             <label for="status" class="ml-2 text-sm font-medium text-gray-700">Block</label>
         </div>
 
         <div>
-            <!-- Hidden input for dateCreated, set to today using Thymeleaf expression -->
             <input type="hidden" id="dateCreated" name="dateCreated" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
         </div>
 
-
-        <button type="submit"
-                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out">
             Add Salesperson
         </button>
     </form>
@@ -89,4 +91,5 @@
 </script>
 
 </body>
+
 </html>
