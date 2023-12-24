@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<div class="max-w-md p-8 bg-white rounded shadow-md w-full my-4 overflow-y-auto">
+    <h2 class="text-2xl font-semibold mb-6">Add New Product</h2>
+    <form th:action="@{/product/add}" method="post" th:object="${newProduct}" class="space-y-4">
+        <div>
+            <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
+            <input type="text" id="name" name="name" th:field="*{name}" class="mt-1 p-2 w-full border rounded-md">
+        </div>
+
+        <div>
+            <label for="description" class="block text-sm font-medium text-gray-700">Description:</label>
+            <textarea id="description" name="description" th:field="*{description}" class="mt-1 p-2 w-full border rounded-md"></textarea>
+        </div>
+
+        <div>
+            <label for="sku" class="block text-sm font-medium text-gray-700">SKU:</label>
+            <input type="text" id="sku" name="sku" th:field="*{sku}" class="mt-1 p-2 w-full border rounded-md">
+        </div>
+
+        <div>
+            <label for="barcode" class="block text-sm font-medium text-gray-700">Barcode:</label>
+            <input type="text" id="barcode" name="barcode" th:field="*{barcode}" class="mt-1 p-2 w-full border rounded-md">
+        </div>
+
+        <div>
+            <label for="importPrice" class="block text-sm font-medium text-gray-700">Import Price:</label>
+            <input type="number" id="importPrice" name="importPrice" th:field="*{importPrice}" class="mt-1 p-2 w-full border rounded-md">
+        </div>
+
+        <div>
+            <label for="retailPrice" class="block text-sm font-medium text-gray-700">Retail Price:</label>
+            <input type="number" id="retailPrice" name="retailPrice" th:field="*{retailPrice}" class="mt-1 p-2 w-full border rounded-md">
+        </div>
+
+        <!-- Other fields related to your Product model can be added here -->
+
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out">
+            Add Product
+        </button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto my-8 p-8 bg-white rounded shadow-md">
+    <h2 class="text-2xl font-semibold mb-6">Product Detail</h2>
+    <div>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <p class="text-gray-600">ID:</p>
+                <p class="font-bold text-gray-800" th:text="${product.id}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Name:</p>
+                <p class="font-bold text-gray-800" th:text="${product.name}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Description:</p>
+                <p class="font-bold text-gray-800" th:text="${product.description}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">SKU:</p>
+                <p class="font-bold text-gray-800" th:text="${product.sku}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Barcode:</p>
+                <p class="font-bold text-gray-800" th:text="${product.barcode}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Import Price:</p>
+                <p class="font-bold text-gray-800" th:text="${product.importPrice}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Retail Price:</p>
+                <p class="font-bold text-gray-800" th:text="${product.retailPrice}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Date Created:</p>
+                <p class="font-bold text-gray-800" th:text="${product.dateCreated}"></p>
+            </div>
+            <div>
+                <p class="text-gray-600">Images:</p>
+                <ul class="list-disc list-inside">
+                    <li th:each="image : ${product.images}" th:text="${image.image}"></li>
+                </ul>
+            </div>
+            <div>
+                <p class="text-gray-600">Transactions:</p>
+                <ul class="list-disc list-inside">
+                    <li th:each="transaction : ${product.transactions}" th:text="${transaction}"></li>
+                </ul>
+            </div>
+            <!-- Include other fields based on your Product model -->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
