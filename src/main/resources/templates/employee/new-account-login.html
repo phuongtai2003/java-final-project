@@ -18,51 +18,25 @@
         <span class="hamburger-btn material-symbols-rounded">menu</span>
         <a href="#" class="logo">
             <img src="/images/logos/company-icon.png" alt="logo">
-            <h2>MKT Technologies Corp</h2>
+            <h2>THT</h2>
         </a>
-        <ul class="links">
-            <span class="close-btn material-symbols-rounded">X</span>
-            <li class="modal-btn">
-                <a href="#">About us</a>
-            </li>
-        </ul>
-        <button class="login-btn">LOG IN</button>
     </nav>
 </header>
-<div class="blur-bg-overlay"></div>
-<div class="form-popup">
-    <span class="close-btn material-symbols-rounded">X</span>
-    <div class="form-box login">
-        <div class="form-details">
-            <h2>Welcome Back</h2>
-            <p>Please log in using your new account.</p>
-        </div>
-        <div class="form-content">
-            <h2>LOGIN</h2>
-            <form id="loginForm" action="#" method="POST">
-                <div class="input-field">
-                    <input id="username" type="text" required>
-                    <label>Username</label>
-                </div>
-                <div class="input-field">
-                    <input id="password" type="password" required>
-                    <label>Password</label>
-                </div>
-                <button type="button" onclick="submitForm()">Log In</button>
-            </form>
-        </div>
-    </div>
-    <section>
-        <span class="overlay"></span>
-        <div class="modal-authentication-box">
-            <i id="authentication-icon" class="fa-solid"></i>
-            <h2 id="authentication-title" style="text-align: center"></h2>
-            <h3 id="authentication-desc">.</h3>
-            <div class="buttons">
-                <button class="close-authentication-btn">Close</button>
+<div class="form-box login" style="position: absolute; width: 50%; left: 50%; top: 50%; transform: translate(-50%, -50%)">
+    <div class="form-content">
+        <h2>LOGIN</h2>
+        <form id="loginForm">
+            <div class="input-field">
+                <input id="username" type="text" required>
+                <label>Username</label>
             </div>
-        </div>
-    </section>
+            <div class="input-field">
+                <input id="password" type="password" required>
+                <label>Password</label>
+            </div>
+            <button type="button" onclick="submitForm()">Log In</button>
+        </form>
+    </div>
 </div>
 
 <div class="modal-popup">
@@ -113,7 +87,7 @@
                     localStorage.setItem("userJson", JSON.stringify(response['data']));
                     localStorage.setItem("token", response['token']);
                     localStorage.setItem("role", response['role']);
-                    openOnSuccessModal(response['data']['name']);
+                    window.location.href = "/dashboard";
                 }
             },
             error: function (error) {
@@ -121,27 +95,6 @@
             }
         });
     }
-
-    function openOnSuccessModal(name) {
-        let counter = 1;
-        icon.classList.remove("fa-xmark");
-        icon.classList.add("fa-check");
-        title.textContent = "SUCCESSFUL";
-        desc.textContent = `${name} login success! Automatically redirects after 2 seconds.`;
-        section.classList.add("active")
-
-        timerInterval = setInterval(function () {
-            if (counter > 0) {
-                desc.textContent = `${name} login success! Automatically redirects after ${counter} seconds.`;
-                counter--;
-            } else {
-                clearInterval(timerInterval);
-                desc.textContent = 'Redirecting';
-                window.location.href = "/dashboard";
-            }
-        }, 1000);
-    }
-
 </script>
 
 </body>

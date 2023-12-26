@@ -11,7 +11,7 @@ import java.util.Date;
 public class JsonTokenUtil {
     private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512);
     private static final Long expiration = 1000L * 60 * 60 * 24 * 7; // 7 days
-    private static final Long registerExpiration = 1000L * 60 * 60 * 24 * 7; // 1 minute
+    private static final Long registerExpiration = 60000L; // 1 minute
 
     public static String generateToken(String email, String username, String role) {
         Date now = new Date();

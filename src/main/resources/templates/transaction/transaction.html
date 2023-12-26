@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modernize Free</title>
+  <title>Transactions</title>
   <link rel="shortcut icon" type="image/png" href="/images/logos/company-icon.png" />
   <link rel="stylesheet" href="/css/styles.min.css" />
   <script src="/js/jquery.min.js"></script>
@@ -142,11 +142,11 @@
                 </div>
               </div>
             </div>
-            <div th:if="${transaction != null}" class="invoice-detail-item p-3 mb-6">
+            <div th:if="${transaction != null}" class="invoice-detail-item p-3 mb-6 w-100">
               <div class="invoice-detail-header d-flex gap-3 justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
                   <div class="invoice-logo me-3">
-                    <img src="/images/logos/company-icon.png" alt="" class="img-fluid">
+                    <img src="/images/logos/company-icon.png" style="width: 100px; height: 100px;" alt="" class="img-fluid">
                   </div>
                   <div class="invoice-detail">
                     <h4 class="fw-semibold mb-1">THT</h4>
@@ -164,7 +164,7 @@
                       <h6 class="mb-3">Invoice From</h6>
                       <div class="d-flex align-items-center">
                         <div class="invoice-logo me-3">
-                          <img src="/images/logos/company-icon.png" alt="" class="img-fluid">
+                          <img src="/images/logos/company-icon.png" style="width: 100px; height: 100px;" alt="" class="img-fluid">
                         </div>
                         <div class="invoice-detail">
                           <h6 class="mb-1" th:text="${transaction.getSalesperson().getName()}">THT</h6>
