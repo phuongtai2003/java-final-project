@@ -30,6 +30,9 @@ else{
                         $(".employee-item").css("display", "none");
                         $(".admin-item").css("display", "none");
                     }
+                    else if(response['data']['role'] === "admin"){
+                        $(".pos-item").css("display", "none");
+                    }
                 }
             },
             error: function (response) {

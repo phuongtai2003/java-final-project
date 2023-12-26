@@ -1,5 +1,6 @@
 package com.example.finalproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,8 +21,10 @@ public class Customer {
     private String address;
     @ManyToOne
     @JoinColumn(name = "salesperson_id", referencedColumnName = "id")
+    @JsonIgnore
     private Salesperson salesperson;
 
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private List<Transaction> transactions;
 }

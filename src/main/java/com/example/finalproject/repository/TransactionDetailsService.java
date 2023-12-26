@@ -18,4 +18,7 @@ public class TransactionDetailsService {
     public Iterable<TransactionDetail> getTransactionDetailsByProduct(int productId){
         return transactionDetailsRepository.findAllByProductId(productId);
     }
+    public Iterable<TransactionDetail> getTransactionDetailsByTransactionId(int transactionId){
+        return transactionDetailsRepository.findAllByTransactionId(transactionId);
+    }
 }

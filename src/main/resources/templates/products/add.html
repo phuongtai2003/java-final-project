@@ -42,11 +42,11 @@
               <span class="hide-menu">Dashboard</span>
             </a>
           </li>
-          <li class="nav-small-cap">
+          <li class="nav-small-cap management-item">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span class="hide-menu">MANAGEMENT</span>
           </li>
-          <li class="sidebar-item">
+          <li class="sidebar-item pos-item">
             <a class="sidebar-link" href="/pos" aria-expanded="false">
                 <span>
                   <i class="ti ti-shopping-cart"></i>
@@ -54,7 +54,7 @@
               <span class="hide-menu">Point Of Sale</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          <li class="sidebar-item product-item">
             <a class="sidebar-link" href="/products" aria-expanded="false">
                 <span>
                   <i class="ti ti-package"></i>
@@ -62,7 +62,7 @@
               <span class="hide-menu">Products</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          <li class="sidebar-item customer-item">
             <a class="sidebar-link" href="/customer" aria-expanded="false">
                 <span>
                   <i class="ti ti-users"></i>
@@ -70,7 +70,7 @@
               <span class="hide-menu">Customer</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          <li class="sidebar-item invoice-item">
             <a class="sidebar-link" href="/invoice" aria-expanded="false">
                 <span>
                   <i class="ti ti-file-invoice"></i>
@@ -78,11 +78,11 @@
               <span class="hide-menu">Invoice</span>
             </a>
           </li>
-          <li class="nav-small-cap">
+          <li class="nav-small-cap admin-item">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span class="hide-menu">ADMIN</span>
           </li>
-          <li class="sidebar-item">
+          <li class="sidebar-item employee-item">
             <a class="sidebar-link" href="/employee" aria-expanded="false">
                 <span>
                   <i class="ti ti-lego"></i>
@@ -95,7 +95,7 @@
           <div class="d-flex">
             <div class="unlimited-access-title me-5">
               <h6 class="fw-semibold fs-4 mb-6 text-dark w-85" id="hello-user-txt">Hi User</h6>
-              <a href="/login" target="_blank" class="btn btn-primary fs-2 fw-semibold mt-2 lh-sm">Sign Out</a>
+              <a href="javascript:void(0)" onclick="removeToken()" target="_blank" class="btn btn-primary fs-2 fw-semibold mt-2 lh-sm">Sign Out</a>
             </div>
             <div class="unlimited-access-img">
               <img src="/images/backgrounds/rocket.png" alt="" class="img-fluid">

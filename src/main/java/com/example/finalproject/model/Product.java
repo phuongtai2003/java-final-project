@@ -1,5 +1,6 @@
 package com.example.finalproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,6 +27,7 @@ public class Product {
     private List<ProductImage> images;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<TransactionDetail> transactions;
 
     @OneToMany(mappedBy = "product")

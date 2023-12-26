@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -43,11 +43,11 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
-            <li class="nav-small-cap">
+            <li class="nav-small-cap management-item">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">MANAGEMENT</span>
             </li>
-            <li class="sidebar-item">
+            <li class="sidebar-item pos-item">
               <a class="sidebar-link" href="/pos" aria-expanded="false">
                 <span>
                   <i class="ti ti-shopping-cart"></i>
@@ -63,7 +63,7 @@
                 <span class="hide-menu">Products</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <li class="sidebar-item customer-item">
               <a class="sidebar-link" href="/customer" aria-expanded="false">
                 <span>
                   <i class="ti ti-users"></i>
@@ -71,7 +71,7 @@
                 <span class="hide-menu">Customer</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <li class="sidebar-item invoice-item">
               <a class="sidebar-link" href="/invoice" aria-expanded="false">
                 <span>
                   <i class="ti ti-file-invoice"></i>
@@ -104,14 +104,9 @@
             </div>
           </div>
         </nav>
-        <!-- End Sidebar navigation -->
       </div>
-      <!-- End Sidebar scroll-->
     </aside>
-    <!--  Sidebar End -->
-    <!--  Main wrapper -->
     <div class="body-wrapper">
-      <!--  Header Start -->
       <header class="app-header">
         <nav class="navbar navbar-expand-lg navbar-light">
           <ul class="navbar-nav">
@@ -148,135 +143,80 @@
           </div>
         </nav>
       </header>
-      <!--  Header End -->
       <div class="container-fluid">
         <div class="card overflow-hidden invoice-application">
           <div class="d-flex">
             <div class="col-lg-6 w-25 d-none d-lg-block border-end user-chat-box">
-              <div class="p-3 border-bottom">
-                <form class="position-relative">
-                  <input type="search" class="form-control search-invoice ps-5" id="seach-invoice" placeholder="Search Invoice">
-                  <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                </form>
-              </div>
-
               <div class="left-sidebar position-relative" style="width: auto !important; height: max-content !important; position: relative!important; z-index: 0">
-                <div class="scroll-sidebar" style="padding: 0!important;">
-                  <a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light" id="invoice-123" data-invoice-id="123">
-                    <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="ti ti-user fs-6"></i>
-                    </div>
-                    <div class="ms-3 d-inline-block w-75">
-                      <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                      <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id: #123</span>
-                      <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab 2020</span>
-                    </div>
-                  </a>
-                  <a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light" id="invoice-123" data-invoice-id="123">
-                    <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="ti ti-user fs-6"></i>
-                    </div>
-                    <div class="ms-3 d-inline-block w-75">
-                      <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                      <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id: #123</span>
-                      <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab 2020</span>
-                    </div>
-                  </a><a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light" id="invoice-123" data-invoice-id="123">
-                  <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="ti ti-user fs-6"></i>
-                  </div>
-                  <div class="ms-3 d-inline-block w-75">
-                    <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id: #123</span>
-                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab 2020</span>
-                  </div>
-                </a><a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light" id="invoice-123" data-invoice-id="123">
-                  <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="ti ti-user fs-6"></i>
-                  </div>
-                  <div class="ms-3 d-inline-block w-75">
-                    <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id: #123</span>
-                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab 2020</span>
-                  </div>
-                </a><a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light" id="invoice-123" data-invoice-id="123">
-                  <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="ti ti-user fs-6"></i>
-                  </div>
-                  <div class="ms-3 d-inline-block w-75">
-                    <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id: #123</span>
-                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab 2020</span>
-                  </div>
-                </a><a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light" id="invoice-123" data-invoice-id="123">
-                  <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="ti ti-user fs-6"></i>
-                  </div>
-                  <div class="ms-3 d-inline-block w-75">
-                    <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id: #123</span>
-                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab 2020</span>
-                  </div>
-                </a><a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light" id="invoice-123" data-invoice-id="123">
-                  <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="ti ti-user fs-6"></i>
-                  </div>
-                  <div class="ms-3 d-inline-block w-75">
-                    <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id: #123</span>
-                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab 2020</span>
-                  </div>
-                </a><a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light" id="invoice-123" data-invoice-id="123">
-                  <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="ti ti-user fs-6"></i>
-                  </div>
-                  <div class="ms-3 d-inline-block w-75">
-                    <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id: #123</span>
-                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab 2020</span>
-                  </div>
-                </a><a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light" id="invoice-123" data-invoice-id="123">
-                  <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="ti ti-user fs-6"></i>
-                  </div>
-                  <div class="ms-3 d-inline-block w-75">
-                    <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id: #123</span>
-                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab 2020</span>
-                  </div>
-                </a><a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light" id="invoice-123" data-invoice-id="123">
-                  <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="ti ti-user fs-6"></i>
-                  </div>
-                  <div class="ms-3 d-inline-block w-75">
-                    <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id: #123</span>
-                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab 2020</span>
-                  </div>
-                </a><a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light" id="invoice-123" data-invoice-id="123">
-                  <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="ti ti-user fs-6"></i>
-                  </div>
-                  <div class="ms-3 d-inline-block w-75">
-                    <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id: #123</span>
-                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab 2020</span>
-                  </div>
-                </a>
-
+                <div class="scroll-sidebar" id="transaction-listing" style="padding: 0!important;">
                 </div>
               </div>
+            </div>
+            <div th:if="${transaction != null}" class="invoice-detail-item p-3 mb-6">
+              <div class="invoice-detail-header d-flex gap-3 justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                  <div class="invoice-logo me-3">
+                    <img src="/images/logos/mkt-logo-hor.png" alt="" class="img-fluid">
+                  </div>
+                  <div class="invoice-detail">
+                    <h4 class="fw-semibold mb-1">THT</h4>
+                    <p class="mb-0">Invoice</p>
+                  </div>
+                </div>
+                <div class="invoice-action-btn">
+                  <a href="javascript:void(0)" class="btn btn-primary">Print</a>
+                </div>
+              </div>
+              <div class="invoice-detail-body mt-3">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="invoice-detail-item">
+                      <h6 class="mb-3">Invoice From</h6>
+                      <div class="d-flex align-items-center">
+                        <div class="invoice-logo me-3">
+                          <img src="/images/logos/mkt-logo-hor.png" alt="" class="img-fluid">
+                        </div>
+                        <div class="invoice-detail">
+                          <h6 class="mb-1" th:text="${transaction.getSalesperson().getName()}">THT</h6>
+                          <p class="mb-0">Salesperson</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 text-md-end">
+                    <div class="invoice-detail-item">
+                      <h6 class="mb-3">Invoice To</h6>
+                      <div class="d-flex align-items-center justify-content-end">
+                        <div class="invoice-detail">
+                          <h6 class="mb-1" th:text="${transaction.getCustomer().getName()}">THT</h6>
+                          <p class="mb-0">Customer</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="invoice-detail-table">
+                  <div class="table-responsive">
+                    <table class="table table-borderless">
+                      <thead>
+                      <tr>
+                        <th scope="col" class="text-center">Item</th>
+                        <th scope="col" class="text-center">Price</th>
+                        <th scope="col" class="text-center">Quantity</th>
+                        <th scope="col" class="text-center">Total</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each="item: ${transactionDetailList}">
+                          <td class="text-center" th:text="${item.getProduct().getName()}"></td>
+                          <td class="text-center" th:text="${item.getProduct().getRetailPrice()}"></td>
+                          <td class="text-center" th:text="${item.getQuantity()}"></td>
+                          <td class="text-center" th:text="${item.getProduct().getRetailPrice()*item.getQuantity()}"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
@@ -293,6 +233,73 @@
   const currentUser = JSON.parse(localStorage.getItem('userJson'));
   $("#personal-image").attr("src", currentUser['image']);
   $("#hello-user-txt").text("Hi " + currentUser['name']);
+
+
+  if(localStorage.getItem('token') === null) {
+    window.location.href = '/login';
+  }
+  else{
+    $.ajax(
+            {
+              type: 'POST',
+              url: '/api/token/checkToken',
+              headers: {
+                "Authorization": `${localStorage.getItem('token')}`,
+                "Content-Type":"application/json"
+              },
+              success: function (response) {
+                if(!response['success']){
+                  window.location.href = "/login";
+                }
+                else if(response['data']['role'] !== "salesperson" && response['data']['role'] !== "admin"){
+                  window.location.href = "/login";
+                }
+                else{
+                  const storeId = response['data']['storeId'];
+                  $.ajax({
+                    url: `/invoice/${storeId}`,
+                    type: 'GET',
+                    headers: {
+                      "Authorization": `${localStorage.getItem('token')}`,
+                      "Content-Type":"application/json"
+                    },
+                    success: function (response){
+                      $("#transaction-listing").empty();
+                      response['data'].forEach(e=>{
+                        $("#transaction-listing").append(
+                                `
+                                <a href="javascript:void(0)" data-invoice-id="${e['id']}" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light invoice-select-item">
+                                  <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-user fs-6"></i>
+                                  </div>
+                                  <div class="ms-3 d-inline-block w-75">
+                                    <h6 class="mb-0 invoice-customer">${e['customer']['name']}</h6>
+
+                                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Total Price: ${e['totalPrice']} $</span>
+                                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">Date Created: ${e['dateCreated']}</span>
+                                  </div>
+                                </a>
+                                `
+                        );
+                      });
+                    },
+                    error: function (response){
+                      console.log(response);
+                    }
+                  })
+                }
+              },
+              error: function (response) {
+                window.location.href = "/login";
+              }
+            }
+    );
+  }
+
+  $("#transaction-listing").on("click", ".invoice-select-item", function (){
+    const invoiceId = $(this).attr("data-invoice-id");
+    window.location.href = `/invoice/detail/${invoiceId}`;
+  });
 
   function removeToken(){
     localStorage.removeItem("token");

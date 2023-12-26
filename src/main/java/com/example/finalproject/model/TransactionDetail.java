@@ -1,5 +1,6 @@
 package com.example.finalproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,6 +16,7 @@ public class TransactionDetail {
     private int id;
     @ManyToOne
     @JoinColumn(name = "transaction_id", referencedColumnName = "id")
+    @JsonIgnore
     private Transaction transaction;
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")

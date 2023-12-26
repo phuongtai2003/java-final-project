@@ -22,7 +22,6 @@ public class Transaction {
     private String dateCreated;
     @ManyToOne()
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @JsonIgnore
     private Customer customer;
     @ManyToOne()
     @JoinColumn(name = "salesperson_id", referencedColumnName = "id")

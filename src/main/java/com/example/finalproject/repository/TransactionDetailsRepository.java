@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface TransactionDetailsRepository extends CrudRepository<TransactionDetail, Integer> {
     public List<TransactionDetail> findAllByProductId(int productId);
+    public List<TransactionDetail> findAllByTransactionId(int transactionId);
 }
