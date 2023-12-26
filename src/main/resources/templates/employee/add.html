@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Headquarter</title>
+    <link rel="shortcut icon" type="image/png" href="/images/logos/company-icon.png" />
+    <link rel="stylesheet" href="/css/styles.min.css" />
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/index.js"></script>
+</head>
+
+<body>
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
+    <aside class="left-sidebar">
+        <div>
+            <div class="brand-logo d-flex align-items-center justify-content-between">
+                <a href="/dashboard" class="text-nowrap logo-img">
+                    <img src="/images/logos/company-icon.png" width="220" alt="" />
+                </a>
+                <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                    <i class="ti ti-x fs-8"></i>
+                </div>
+            </div>
+            <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                <ul id="sidebarnav">
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">Home</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                            <span class="hide-menu">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-small-cap management-item">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">MANAGEMENT</span>
+                    </li>
+                    <li class="sidebar-item pos-item">
+                        <a class="sidebar-link" href="/pos" aria-expanded="false">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+                            <span class="hide-menu">Point Of Sale</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item product-item">
+                        <a class="sidebar-link" href="/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-package"></i>
+                </span>
+                            <span class="hide-menu">Products</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item customer-item">
+                        <a class="sidebar-link" href="/customer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+                            <span class="hide-menu">Customer</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item invoice-item">
+                        <a class="sidebar-link" href="/invoice" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-invoice"></i>
+                </span>
+                            <span class="hide-menu">Invoice</span>
+                        </a>
+                    </li>
+                    <li class="nav-small-cap admin-item">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">ADMIN</span>
+                    </li>
+                    <li class="sidebar-item employee-item">
+                        <a class="sidebar-link" href="/employee" aria-expanded="false">
+                <span>
+                  <i class="ti ti-lego"></i>
+                </span>
+                            <span class="hide-menu">Employees</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+                    <div class="d-flex">
+                        <div class="unlimited-access-title me-5">
+                            <h6 class="fw-semibold fs-4 mb-6 text-dark w-85" id="hello-user-txt">Hi User</h6>
+                            <a href="javascript:void(0)" onclick="removeToken()" target="_blank" class="btn btn-primary fs-2 fw-semibold mt-2 lh-sm">Sign Out</a>
+                        </div>
+                        <div class="unlimited-access-img">
+                            <img src="/images/backgrounds/rocket.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </aside>
+    <div class="body-wrapper">
+        <header class="app-header">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item d-block d-xl-none">
+                        <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                    <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="/images/profile/male-figure.jpg" alt="" width="35" height="35" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                                <div class="message-body">
+                                    <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
+                                        <i class="ti ti-user fs-6"></i>
+                                        <p class="mb-0 fs-3">My Profile</p>
+                                    </a>
+                                    <a href="#" class="btn btn-outline-primary mx-3 mt-2 d-block" onclick="removeToken()">Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="border-bottom title-part-padding">
+                        <h4 th:text="${employee != null ? 'Update Employee' : 'Create New Employee'}" class="card-title fw-semibold mb-2"></h4>
+                        <div th:if="${errorMessage!=null}" class="alert alert-danger text-danger w-100 text-center" th:text="${errorMessage}"></div>
+                    </div>
+                    <div class="pt-3">
+                        <h6 class="fw-semibold mb-2">Employee Details</h6>
+                        <form  th:action="${employee != null ? '/employee/edit/' + employee.getId() : '/employee/add'}" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <div class="employee-name">
+                                        <input th:value="${request != null ? request.getEmployeeName() : employee != null ? employee.getName() : ''}" name="employeeName" type="text" id="employee-name-input" class="form-control" placeholder="Employee Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <div class="employee-username">
+                                        <input th:value="${request != null ? request.getEmployeeUsername() : employee != null ? employee.getEmail().split('@')[0] : ''}" name="employeeUsername" type="text" id="employee-username-input" class="form-control" placeholder="Employee Username">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <div class="employee-address">
+                                        <input th:value="${request != null ? request.getEmployeeAddress() : employee != null ? employee.getAddress() : ''}" name="employeeAddress" type="text" id="employee-address-input" class="form-control" placeholder="Employee Address">
+                                    </div>
+                                </div>
+                            </div>
+                            <h6 class="fw-semibold mb-2">Contact Details</h6>
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <div class="employee-phone">
+                                        <input th:value="${request != null ? request.getEmployeePhone() : employee != null ? employee.getPhone() : ''}" name="employeePhone" type="tel" id="employee-phone-input" class="form-control" placeholder="Employee Phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="employee-salary">
+                                        <input th:value="${request != null ? request.getEmployeeSalary() : employee != null ? employee.getSalary() : ''}" type="number" name="employeeSalary" id="employee-salary-input" class="form-control" placeholder="Employee Salary" min="0" max="1000">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="employee-gender h-100 d-flex justify-content-center align-items-center gap-4">
+                                        <h5 class="fw-light">Gender:</h5>
+                                        <div>
+                                            <input th:checked="${(request!=null && request.getEmployeeGender() != null && request.getEmployeeGender().equalsIgnoreCase('male')) || (employee != null && employee.getGender().equalsIgnoreCase('male'))}" type="radio" value="Male" name="employeeGender" id="male-gender-input" class="form-check-input">
+                                            <label for="male-gender-input">Male</label>
+                                        </div>
+                                        <div>
+                                            <input th:checked="${request!=null && request.getEmployeeGender() != null && request.getEmployeeGender().equalsIgnoreCase('female') || (employee != null && employee.getGender().equalsIgnoreCase('female'))}" type="radio" value="Female" name="employeeGender" id="female-gender-input" class="form-check-input">
+                                            <label for="female-gender-input">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center mb-3">
+                                <h6 class="fw-semibold mb-2">Employee Image</h6>
+                                <div class="col-3 p-1 image-block d-flex justify-content-center align-items-center">
+                                    <input name="employeeImage" type="file" id="image-input" hidden="hidden" accept="image/png, image/gif, image/jpeg">
+                                    <img id="employee-image" class="img-fluid w-100 h-100" th:src="${employee != null ? employee.getImage() : ''}" th:style="${employee != null ? 'display:block': 'display:none'}" alt="">
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <label for="image-input" class="image-input-label btn btn-primary w-50 mb-6">
+                                    Click to change image
+                                </label>
+                            </div>
+                            <input type="hidden" name="storeId" id="store-id-input">
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <button type="submit" th:text="${employee != null ? 'Update' : 'Create New'}" class="btn btn-primary w-100"></button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="reset" class="btn btn-outline-danger w-100">Reset</button>
+                                </div>
+                            </div>
+                            <div th:if="${successMessage}" class="alert alert-success">
+                                <span th:text="${successMessage}"></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/libs/jquery/dist/jquery.min.js"></script>
+<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/sidebarmenu.js"></script>
+<script src="/js/app.min.js"></script>
+<script src="/libs/simplebar/dist/simplebar.js"></script>
+</body>
+
+<script>
+    if(localStorage.getItem("token") === null){
+        window.location.href = "/login";
+    }
+    else{
+        $.ajax({
+            type: "POST",
+            url: "/api/token/checkToken",
+            headers: {
+                "Authorization": `${localStorage.getItem('token')}`,
+                "Content-Type":"application/json"
+            },
+            success: function (response) {
+
+                if(!response['success'] || response['data']['role'] !== "admin"){
+                    window.location.href = "/login";
+                }
+                $("#store-id-input").val(response['data']['storeId']);
+                $(".hello-user-txt").text(`Hi, ${response['data']['username']}`);
+            },
+        })
+    }
+
+    function removeToken() {
+        localStorage.removeItem("token");
+        localStorage.removeItem('cart');
+        localStorage.removeItem("role");
+        localStorage.removeItem("userJson");
+        window.location.href = "/headquarter/login";
+    }
+
+    document.getElementById('image-input').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const imagePreview = document.getElementById('employee-image');
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+        };
+
+        reader.readAsDataURL(file);
+    });
+</script>
+
+</html>

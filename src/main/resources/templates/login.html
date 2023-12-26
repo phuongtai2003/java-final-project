@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THT</title>
+    <link rel="icon" href="/images/logos/company-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/login-style.css">
+    <script src="/js/login.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://kit.fontawesome.com/ea9f34d5b1.js" crossorigin="anonymous"></script>
+
+</head>
+<body class="login">
+<header>
+    <nav class="navbar">
+        <span class="hamburger-btn material-symbols-rounded">menu</span>
+        <a href="#" class="logo">
+            <img src="/images/logos/company-icon.png" alt="logo">
+            <h2 style="color: #0ea78b">THT</h2>
+        </a>
+    </nav>
+</header>
+<div class="form-box login" style="width: 50%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)">
+    <div class="form-content">
+        <h2>LOGIN</h2>
+        <form id="loginForm" action="#" method="POST">
+            <div class="input-field">
+                <input id="username" type="text" required>
+                <label>Username</label>
+            </div>
+            <div class="input-field">
+                <input id="password" type="password" required>
+                <label>Password</label>
+            </div>
+            <div class="dropdown-menu-section" style="position: relative">
+                <button type="button" class="btn w-100 dropdown-menu-btn" style="margin-left: 0; margin-right: 0; margin-bottom: 0">Retail Store</button>
+                <div class="dropdown-menu-items" style="position: absolute; display: none; left: 0; right: 0">
+                    <div th:each="store: ${retailStores}" class="dropdown-menu-item" th:text="${store.getStoreName()}" th:onclick="'chooseRetailStore(this,' + ${store.getId()} +')'"></div>
+                </div>
+            </div>
+            <input type="hidden" id="retailStoreId" required>
+            <button type="button" onclick="submitForm()">Log In</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function submitForm() {
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const retailStoreId = document.getElementById("retailStoreId").value;
+
+        const data = {
+            username,
+            password,
+            retailStoreId
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/loginStore",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (response) {
+                handleResponse(response);
+            },
+            error: function (error) {
+                console.error("Error:", error);
+            }
+        });
+
+    }
+
+    function handleResponse(response) {
+        if (response['data'] !== "invalid") {
+            localStorage.setItem("userJson", JSON.stringify(response['data']));
+            localStorage.setItem("token", response['token']);
+            localStorage.setItem("role", response['role']);
+            window.location.href = "/dashboard";
+        } else if (response['data'] === "invalid") {
+            let title = document.getElementById('authentication-title');
+            let desc = document.getElementById('authentication-desc');
+            icon.classList.remove("fa-check");
+            icon.classList.add("fa-xmark");
+            title.textContent = "UNSUCCESSFUL";
+            desc.textContent = response['message'];
+            section.classList.add("active");
+        }
+    }
+
+    $(".dropdown-menu-btn").click(function () {
+        $(".dropdown-menu-items").toggle();
+    });
+
+    function chooseRetailStore(element, id){
+        $(".dropdown-menu-btn").text(element.innerHTML);
+        $(".dropdown-menu-items").toggle();
+        $("#retailStoreId").val(id);
+    }
+
+    if(localStorage.getItem("token") !== null){
+        $.ajax(
+            {
+                type: 'POST',
+                url: '/api/token/checkToken',
+                headers: {
+                    "Authorization": `${localStorage.getItem('token')}`,
+                    "Content-Type":"application/json"
+                },
+                success: function (response) {
+                    if(response['success'] && (response['data']['role'] === "salesperson" || response['data']['role'] === "admin")){
+                        window.location.href = "/login";
+                    }
+                },
+            }
+        );
+    }
+
+</script>
+</body>
+</html>

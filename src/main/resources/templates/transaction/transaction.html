@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="/images/logos/company-icon.png" />
+  <link rel="stylesheet" href="/css/styles.min.css" />
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/contact.js"></script>
+  <script src="/js/index.js"></script>
+</head>
+
+<body>
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <aside class="left-sidebar">
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="/dashboard" class="text-nowrap logo-img">
+            <img src="/images/logos/company-icon.png" width="220" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Home</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-small-cap management-item">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">MANAGEMENT</span>
+            </li>
+            <li class="sidebar-item pos-item">
+              <a class="sidebar-link" href="/pos" aria-expanded="false">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+                <span class="hide-menu">Point Of Sale</span>
+              </a>
+            </li>
+            <li class="sidebar-item product-item">
+              <a class="sidebar-link" href="/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-package"></i>
+                </span>
+                <span class="hide-menu">Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item customer-item">
+              <a class="sidebar-link" href="/customer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+                <span class="hide-menu">Customer</span>
+              </a>
+            </li>
+            <li class="sidebar-item invoice-item">
+              <a class="sidebar-link" href="/invoice" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-invoice"></i>
+                </span>
+                <span class="hide-menu">Invoice</span>
+              </a>
+            </li>
+            <li class="nav-small-cap admin-item">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">ADMIN</span>
+            </li>
+            <li class="sidebar-item employee-item">
+              <a class="sidebar-link" href="/employee" aria-expanded="false">
+                <span>
+                  <i class="ti ti-lego"></i>
+                </span>
+                <span class="hide-menu">Employees</span>
+              </a>
+            </li>
+          </ul>
+          <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+            <div class="d-flex">
+              <div class="unlimited-access-title me-5">
+                <h6 class="fw-semibold fs-4 mb-6 text-dark w-85" id="hello-user-txt">Hi User</h6>
+                <a href="javascript:void(0)" onclick="removeToken()" target="_blank" class="btn btn-primary fs-2 fw-semibold mt-2 lh-sm">Sign Out</a>
+              </div>
+              <div class="unlimited-access-img">
+                <img src="/images/backgrounds/rocket.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </aside>
+    <div class="body-wrapper">
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                  <img id="personal-image" src="/images/profile/male-figure.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0)" onclick="removeToken()" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <div class="container-fluid">
+        <div class="card overflow-hidden invoice-application">
+          <div class="d-flex">
+            <div class="col-lg-6 w-25 d-none d-lg-block border-end user-chat-box">
+              <div class="left-sidebar position-relative" style="width: auto !important; height: max-content !important; position: relative!important; z-index: 0">
+                <div class="scroll-sidebar" id="transaction-listing" style="padding: 0!important;">
+                </div>
+              </div>
+            </div>
+            <div th:if="${transaction != null}" class="invoice-detail-item p-3 mb-6">
+              <div class="invoice-detail-header d-flex gap-3 justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                  <div class="invoice-logo me-3">
+                    <img src="/images/logos/company-icon.png" alt="" class="img-fluid">
+                  </div>
+                  <div class="invoice-detail">
+                    <h4 class="fw-semibold mb-1">THT</h4>
+                    <p class="mb-0">Invoice</p>
+                  </div>
+                </div>
+                <div class="invoice-action-btn">
+                  <a href="javascript:void(0)" class="btn btn-primary">Print</a>
+                </div>
+              </div>
+              <div class="invoice-detail-body mt-3">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="invoice-detail-item">
+                      <h6 class="mb-3">Invoice From</h6>
+                      <div class="d-flex align-items-center">
+                        <div class="invoice-logo me-3">
+                          <img src="/images/logos/company-icon.png" alt="" class="img-fluid">
+                        </div>
+                        <div class="invoice-detail">
+                          <h6 class="mb-1" th:text="${transaction.getSalesperson().getName()}">THT</h6>
+                          <p class="mb-0">Salesperson</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 text-md-end">
+                    <div class="invoice-detail-item">
+                      <h6 class="mb-3">Invoice To</h6>
+                      <div class="d-flex align-items-center justify-content-end">
+                        <div class="invoice-detail">
+                          <h6 class="mb-1" th:text="${transaction.getCustomer().getName()}">THT</h6>
+                          <p class="mb-0">Customer</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="invoice-detail-table">
+                  <div class="table-responsive">
+                    <table class="table table-borderless">
+                      <thead>
+                      <tr>
+                        <th scope="col" class="text-center">Item</th>
+                        <th scope="col" class="text-center">Price</th>
+                        <th scope="col" class="text-center">Quantity</th>
+                        <th scope="col" class="text-center">Total</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each="item: ${transactionDetailList}">
+                          <td class="text-center" th:text="${item.getProduct().getName()}"></td>
+                          <td class="text-center" th:text="${item.getProduct().getRetailPrice()} +' $'"></td>
+                          <td class="text-center" th:text="${item.getQuantity()}"></td>
+                          <td class="text-center" th:text="${item.getProduct().getRetailPrice()*item.getQuantity()}+' $'"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="flex justify-content-end w-100 gap-6">
+                  <h5 class="text-end" th:text="'Customer Paid: ' + ${transaction.getCustomerPaid()} + ' $'"></h5>
+                  <h5 class="text-end" th:text="'Returns: ' + ${transaction.getTransactionChange()} + ' $'"></h5>
+                  <h5 class="text-end" th:text="'Total: ' + ${transaction.getTotalPrice()} + ' $'"></h5>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/sidebarmenu.js"></script>
+  <script src="/js/app.min.js"></script>
+  <script src="/libs/simplebar/dist/simplebar.js"></script>
+</body>
+<script>
+  const currentUser = JSON.parse(localStorage.getItem('userJson'));
+  $("#personal-image").attr("src", currentUser['image']);
+  $("#hello-user-txt").text("Hi " + currentUser['name']);
+
+
+  if(localStorage.getItem('token') === null) {
+    window.location.href = '/login';
+  }
+  else{
+    $.ajax(
+            {
+              type: 'POST',
+              url: '/api/token/checkToken',
+              headers: {
+                "Authorization": `${localStorage.getItem('token')}`,
+                "Content-Type":"application/json"
+              },
+              success: function (response) {
+                if(!response['success']){
+                  window.location.href = "/login";
+                }
+                else if(response['data']['role'] !== "salesperson" && response['data']['role'] !== "admin"){
+                  window.location.href = "/login";
+                }
+                else{
+                  const storeId = response['data']['storeId'];
+                  $.ajax({
+                    url: `/invoice/${storeId}`,
+                    type: 'GET',
+                    headers: {
+                      "Authorization": `${localStorage.getItem('token')}`,
+                      "Content-Type":"application/json"
+                    },
+                    success: function (response){
+                      $("#transaction-listing").empty();
+                      response['data'].forEach(e=>{
+                        $("#transaction-listing").append(
+                                `
+                                <a href="javascript:void(0)" data-invoice-id="${e['id']}" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light invoice-select-item">
+                                  <div class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-user fs-6"></i>
+                                  </div>
+                                  <div class="ms-3 d-inline-block w-75">
+                                    <h6 class="mb-0 invoice-customer">${e['customer']['name']}</h6>
+
+                                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Total Price: ${e['totalPrice']} $</span>
+                                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">Date Created: ${e['dateCreated']}</span>
+                                  </div>
+                                </a>
+                                `
+                        );
+                      });
+                    },
+                    error: function (response){
+                      console.log(response);
+                    }
+                  })
+                }
+              },
+              error: function (response) {
+                window.location.href = "/login";
+              }
+            }
+    );
+  }
+
+  $("#transaction-listing").on("click", ".invoice-select-item", function (){
+    const invoiceId = $(this).attr("data-invoice-id");
+    window.location.href = `/invoice/detail/${invoiceId}`;
+  });
+
+  function removeToken(){
+    localStorage.removeItem("token");
+    localStorage.removeItem('userJson');
+    localStorage.removeItem('role');
+    localStorage.removeItem('cart');
+    window.location.href = "/login";
+  }
+
+</script>
+
+</html>

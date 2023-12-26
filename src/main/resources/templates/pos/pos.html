@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="/images/logos/company-icon.png" />
+  <link rel="stylesheet" href="/css/styles.min.css" />
+</head>
+
+<body>
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <aside class="left-sidebar">
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="/dashboard" class="text-nowrap logo-img">
+            <img src="/images/logos/company-icon.png" width="220" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Home</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-small-cap management-item">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">MANAGEMENT</span>
+            </li>
+            <li class="sidebar-item pos-item">
+              <a class="sidebar-link" href="/pos" aria-expanded="false">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+                <span class="hide-menu">Point Of Sale</span>
+              </a>
+            </li>
+            <li class="sidebar-item product-item">
+              <a class="sidebar-link" href="/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-package"></i>
+                </span>
+                <span class="hide-menu">Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item customer-item">
+              <a class="sidebar-link" href="/customer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+                <span class="hide-menu">Customer</span>
+              </a>
+            </li>
+            <li class="sidebar-item invoice-item">
+              <a class="sidebar-link" href="/invoice" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-invoice"></i>
+                </span>
+                <span class="hide-menu">Invoice</span>
+              </a>
+            </li>
+            <li class="nav-small-cap admin-item">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">ADMIN</span>
+            </li>
+            <li class="sidebar-item employee-item">
+              <a class="sidebar-link" href="/employee" aria-expanded="false">
+                <span>
+                  <i class="ti ti-lego"></i>
+                </span>
+                <span class="hide-menu">Employees</span>
+              </a>
+            </li>
+          </ul>
+          <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+            <div class="d-flex">
+              <div class="unlimited-access-title me-5">
+                <h6 class="fw-semibold fs-4 mb-6 text-dark w-85" id="hello-user-txt">Hi User</h6>
+                <a href="javascript:void(0)" onclick="removeToken()" target="_blank" class="btn btn-primary fs-2 fw-semibold mt-2 lh-sm">Sign Out</a>
+              </div>
+              <div class="unlimited-access-img">
+                <img src="/images/backgrounds/rocket.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </aside>
+    <div class="body-wrapper">
+      <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-labelledby="customerModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <form id="customer-modal-form" enctype="multipart/form-data">
+              <div class="modal-header d-flex align-items-center">
+                <h5 class="modal-title">Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="add-customer-box">
+                  <div class="add-customer-content">
+                    <div class="row">
+                      <div class="mb-3 customer-id">
+                        <input type="text" id="cus-id" class="form-control" placeholder="Customer NO" disabled>
+                        <span class="validation-text text-danger"></span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="mb-3 customer-name">
+                        <input type="text" id="cus-name" class="form-control" name="customerName" placeholder="Customer name">
+                        <span class="validation-text text-danger"></span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="mb-3 customer-address">
+                        <input type="text" id="cus-address" class="form-control" name="customerAddress" placeholder="Customer Address">
+                        <span class="validation-text text-danger"></span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="mb-3 customer-phone">
+                        <input type="text" id="cus-phone" class="form-control" name="customerPhone" placeholder="Customer Phone">
+                        <span class="validation-text text-danger"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" id="modal-btn-add-customer" class="btn btn-success rounded-pill px-4">Add</button>
+                <button type="submit" id="modal-btn-edit-customer" class="btn btn-success rounded-pill px-4">Save</button>
+                <button type="button" class="btn btn-danger rounded-pill px-4" data-bs-dismiss="modal"> Discard </button>
+              </div>
+              <input hidden id="salesperson-id-input" name="salespersonId">
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header d-flex align-items-center">
+              <h5 class="modal-title">Notification</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <span id="modal-error-message">Send email successfully</span>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal"> OK </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="customer-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header d-flex align-items-center">
+              <h5 class="modal-title">Notification</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <span>Please enter your customer's payment</span>
+              <label for="customer-price-input">Payment:</label>
+              <input id="customer-price-input" class="form-control" min="0" name="customerPayment" type="number">
+              <span id="total-cart-price-txt">Total needs to pay:</span>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary rounded-pill px-4 btn-pay-for-btn"> OK </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                  <img id="personal-image" src="/images/profile/male-figure.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0)" onclick="removeToken()" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <div class="container-fluid">
+        <div th:if="${errorMessage != null}" th:text="${errorMessage}" class="alert alert-danger text-danger text-center"></div>
+        <div class="row">
+          <div class="col-lg-8 d-flex align-items-strech">
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div class="mb-3 mb-sm-0">
+                    <h5 class="card-title fw-semibold">All products</h5>
+                  </div>
+                </div>
+                <div class="row products-list-container">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <form action="/invoice/"></form>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card overflow-hidden">
+                  <div class="card-body p-4">
+                    <h5 class="card-title mb-9 fw-semibold">Cart details</h5>
+                    <div id="cart-details-container">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="card overflow-hidden">
+                  <div class="card-body p-4">
+                    <div style="display: flex; justify-content: space-between">
+                      <h5 class="card-title mb-9 fw-semibold">Customer Information</h5>
+                      <button type="button" class="btn btn-primary text-white" id="add-customer-btn">Add Customer</button>
+                    </div>
+                    <div class="row align-items-center">
+                      <div class="col-12">
+                          <div class="mb-3 position-relative">
+                            <label for="customerPhone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="customerPhone" aria-describedby="emailHelp">
+                            <div class="customer-dropdown-list" style="position: absolute; left: 0; right: 0; display: none; height: 100px; overflow-y: scroll">
+                              <div class="customer-select-item w-100 p-3 bg-primary text-center rounded text-white cursor-pointer" onclick="" th:each="customer: ${customers}" th:text="${customer.getName()}" th:attr="data-customer-id=${customer.getId()}, data-customer-phone=${customer.getPhone()}"></div>
+                            </div>
+                          </div>
+
+                          <div class="mb-3">
+                            <input id="customerId" type="hidden">
+                            <label for="customerName" class="form-label">Name</label>
+                            <input readonly type="text" class="form-control" id="customerName" aria-describedby="emailHelp">
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="card overflow-hidden">
+                  <div class="card-body p-4">
+                    <div class="row align-items-center">
+                      <div>
+                        <h5 class="card-title fw-semibold mb-4">Total</h5>
+                        <div class="table-responsive">
+                          <table class="table text-nowrap mb-0 align-middle">
+                            <tbody>
+                            <tr>
+                              <td class="border-bottom-0">
+                                <h6 class="fw-semibold mb-1">Total Quantity</h6>
+                              </td>
+                              <td class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0 fs-4 total-quantity-text">10</h6>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="border-bottom-0">
+                                <h6 class="fw-semibold mb-1">Total Price</h6>
+                              </td>
+                              <td class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0 fs-4 total-price-text">$3.9</h6>
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>
+                          <div class="mt-6 d-flex justify-content-center">
+                            <input hidden id="salesperson-purchase-id-input" name="salespersonId">
+                            <a href="javascript:void(0)" onclick="purchase()" class="btn btn-success mx-2">Purchase</a>
+                            <a href="#" onclick="clearCart()" class="btn btn-danger mx-2">Clear</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/sidebarmenu.js"></script>
+  <script src="/js/app.min.js"></script>
+  <script src="/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="/libs/simplebar/dist/simplebar.js"></script>
+  <script src="/js/dashboard.js"></script>
+  <script src="/js/index.js"></script>
+</body>
+<script>
+  const currentUser = JSON.parse(localStorage.getItem('userJson'));
+  $("#personal-image").attr("src", currentUser['image']);
+  $("#hello-user-txt").text("Hi " + currentUser['name']);
+
+  const role = localStorage.getItem('role');
+
+  if(role === 'salesperson'){
+    $("#salesperson-id-input").val(currentUser['id']);
+    $("#salesperson-purchase-id-input").val(currentUser['id']);
+  }
+
+  if(localStorage.getItem('token') === null) {
+    window.location.href = '/login';
+  }
+  else{
+    $.ajax(
+            {
+              type: 'POST',
+              url: '/api/token/checkToken',
+              headers: {
+                "Authorization": `${localStorage.getItem('token')}`,
+                "Content-Type":"application/json"
+              },
+              success: function (response) {
+                if(!response['success']){
+                  window.location.href = "/login";
+                }
+                else if(response['data']['role'] !== "salesperson" && response['data']['role'] !== "admin"){
+                  window.location.href = "/login";
+                }
+                else {
+                  const storeId = response['data']['storeId'];
+                  $.ajax({
+                    url: `/products/${storeId}`,
+                    type: "GET",
+                    headers: {
+                      "Authorization": `${localStorage.getItem('token')}`,
+                      "Content-Type": "application/json"
+                    },
+                    success: function (response) {
+                      response['data'].forEach(e =>{
+                        $(".products-list-container").append(
+                                `
+                        <div class="col-sm-6 col-xl-3">
+                          <div class="card overflow-hidden rounded-2">
+                            <div class="position-relative">
+                              <a href="javascript:void(0)"><img height="100px" src="${e['images'][0]['image']}" class="card-img-top rounded-0" alt="..."></a>
+                              <a href="javascript:void(0)" data-product-price="${e['retailPrice']}" data-product-name="${e['name']}" data-product-id="${e['id']}" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3 add-to-cart-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-plus fs-4"></i></a>
+                            </div>
+                            <div class="card-body pt-3 p-4">
+                              <h6 class="fw-semibold fs-4">${e['name']}</h6>
+                              <div class="d-flex align-items-center justify-content-between">
+                                <h6 class="fw-semibold fs-4 mb-0">${e['retailPrice']} $</h6>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        `
+                        );
+                      });
+                    }
+                  });
+                }
+              },
+              error: function (response) {
+                window.location.href = "/login";
+              }
+            }
+    );
+  }
+
+  let tempCart = JSON.parse(localStorage.getItem('cart'));
+  $("#cart-details-container").empty();
+  if(tempCart != null){
+    $(".total-quantity-text").text(tempCart.reduce((a, b) => a + b['quantity'], 0));
+    $(".total-price-text").text(tempCart.reduce((a, b) => a + b['quantity']*b['productPrice'], 0));
+  }
+  else{
+    tempCart = [];
+    $(".total-quantity-text").text(tempCart.reduce((a, b) => a + b['quantity'], 0));
+    $(".total-price-text").text(tempCart.reduce((a, b) => a + b['quantity']*b['productPrice'], 0));
+  }
+
+  tempCart.forEach(e=>{
+    $("#cart-details-container").append(
+            `
+               <div class="product-card data-product-id='${e['productId']}' border border-secondary border-3 rounded p-2 mb-2">
+                      <div class="product-name d-flex justify-content-between my-2">
+                        <span>${e['productName']}</span>
+                        <button type="button" class="btn btn-danger btn-remove-product-btn" data-product-id="${e['productId']}">X</button>
+                      </div>
+                      <div class="quantity-price-container py-2">
+                        <div class="quantity d-flex justify-content-between">
+                          <div>
+                            <button type="button" class="btn btn-secondary reduce-product-btn" data-product-id="${e['productId']}">-</button>
+                            <span class="mx-2 quantity">${e['quantity']}</span>
+                            <button type="button" class="btn btn-secondary increase-product-btn" data-product-id="${e['productId']}">+</button>
+                          </div>
+                          <span class="price py-2">${e['productPrice']} $</span>
+                        </div>
+                      </div>
+                      <div class="total-price py-2">
+                      ${e['productPrice']*e['quantity']} $
+                      </div>
+                    </div>
+        `
+    );
+  });
+
+  $(".products-list-container").on("click", ".add-to-cart-btn", function (){
+    let cartJson = JSON.parse(localStorage.getItem('cart'));
+    if(cartJson === null){
+      cartJson = [];
+    }
+    const productId = $(this).attr("data-product-id");
+    const productName = $(this).attr("data-product-name");
+    const productPrice = $(this).attr("data-product-price");
+    let isExist = false;
+    cartJson.forEach(e =>{
+      if(e['productId'] === productId){
+        isExist = true;
+        e['quantity'] += 1;
+      }
+    });
+    if(!isExist){
+      cartJson.push({
+        productId: productId,
+        quantity: 1,
+        productName: productName,
+        productPrice: productPrice,
+      });
+    }
+    $("#cart-details-container").empty();
+    cartJson.forEach(e=>{
+      $("#cart-details-container").append(
+              `
+               <div class="product-card data-product-id='${e['productId']}' border border-secondary border-3 rounded p-2 mb-2">
+                      <div class="product-name d-flex justify-content-between my-2">
+                        <span>${e['productName']}</span>
+                        <button type="button" class="btn btn-danger btn-remove-product-btn" data-product-id="${e['productId']}">X</button>
+                      </div>
+                      <div class="quantity-price-container py-2">
+                        <div class="quantity d-flex justify-content-between">
+                          <div>
+                            <button type="button" class="btn btn-secondary reduce-product-btn" data-product-id="${e['productId']}">-</button>
+                            <span class="mx-2 quantity">${e['quantity']}</span>
+                            <button type="button" class="btn btn-secondary increase-product-btn" data-product-id="${e['productId']}">+</button>
+                          </div>
+                          <span class="price py-2">${e['productPrice']} $</span>
+                        </div>
+                      </div>
+                      <div class="total-price py-2">
+                      ${e['productPrice']*e['quantity']} $
+                      </div>
+                    </div>
+        `
+      );
+    });
+    $(".total-quantity-text").text(cartJson.reduce((a, b) => a + b['quantity'], 0));
+    $(".total-price-text").text(cartJson.reduce((a, b) => a + b['quantity']*b['productPrice'], 0));
+    localStorage.setItem('cart', JSON.stringify(cartJson));
+  });
+
+  $("#cart-details-container").on("click", ".increase-product-btn", function (){
+    const productId = $(this).attr("data-product-id");
+    let cartJson = JSON.parse(localStorage.getItem('cart'));
+    cartJson.forEach(e =>{
+      if(e['productId'] === productId){
+        e['quantity'] += 1;
+      }
+    });
+    $("#cart-details-container").empty();
+    cartJson.forEach(e=>{
+      $("#cart-details-container").append(
+              `
+               <div class="product-card data-product-id='${e['productId']}' border border-secondary border-3 rounded p-2 mb-2">
+                      <div class="product-name d-flex justify-content-between my-2">
+                        <span>${e['productName']}</span>
+                        <button type="button" class="btn btn-danger btn-remove-product-btn" data-product-id="${e['productId']}">X</button>
+                      </div>
+                      <div class="quantity-price-container py-2">
+                        <div class="quantity d-flex justify-content-between">
+                          <div>
+                            <button type="button" class="btn btn-secondary reduce-product-btn" data-product-id="${e['productId']}">-</button>
+                            <span class="mx-2 quantity">${e['quantity']}</span>
+                            <button type="button" class="btn btn-secondary increase-product-btn" data-product-id="${e['productId']}">+</button>
+                          </div>
+                          <span class="price py-2">${e['productPrice']} $</span>
+                        </div>
+                      </div>
+                      <div class="total-price py-2">
+                      ${e['productPrice']*e['quantity']} $
+                      </div>
+                    </div>
+        `
+      );
+    });
+    $(".total-quantity-text").text(cartJson.reduce((a, b) => a + b['quantity'], 0));
+    $(".total-price-text").text(cartJson.reduce((a, b) => a + b['quantity']*b['productPrice'], 0));
+    localStorage.setItem('cart', JSON.stringify(cartJson));
+  });
+
+
+  $("#cart-details-container").on("click", ".reduce-product-btn", function (){
+    const productId = $(this).attr("data-product-id");
+    let cartJson = JSON.parse(localStorage.getItem('cart'));
+    cartJson.forEach(e =>{
+      if(e['productId'] === productId){
+        e['quantity'] -= 1;
+        if(e['quantity'] === 0){
+          cartJson = cartJson.filter(e => e['productId'] !== productId);
+        }
+      }
+    });
+    $("#cart-details-container").empty();
+    cartJson.forEach(e=>{
+      $("#cart-details-container").append(
+              `
+               <div class="product-card data-product-id='${e['productId']}' border border-secondary border-3 rounded p-2 mb-2">
+                      <div class="product-name d-flex justify-content-between my-2">
+                        <span>${e['productName']}</span>
+                        <button type="button" class="btn btn-danger btn-remove-product-btn" data-product-id="${e['productId']}">X</button>
+                      </div>
+                      <div class="quantity-price-container py-2">
+                        <div class="quantity d-flex justify-content-between">
+                          <div>
+                            <button type="button" class="btn btn-secondary reduce-product-btn" data-product-id="${e['productId']}">-</button>
+                            <span class="mx-2 quantity">${e['quantity']}</span>
+                            <button type="button" class="btn btn-secondary increase-product-btn" data-product-id="${e['productId']}">+</button>
+                          </div>
+                          <span class="price py-2">${e['productPrice']} $</span>
+                        </div>
+                      </div>
+                      <div class="total-price py-2">
+                      ${e['productPrice']*e['quantity']} $
+                      </div>
+                    </div>
+        `
+      );
+    });
+    $(".total-quantity-text").text(cartJson.reduce((a, b) => a + b['quantity'], 0));
+    $(".total-price-text").text(cartJson.reduce((a, b) => a + b['quantity']*b['productPrice'], 0));
+    localStorage.setItem('cart', JSON.stringify(cartJson));
+  });
+
+  $("#cart-details-container").on("click", ".btn-remove-product-btn", function (){
+    const productId = $(this).attr("data-product-id");
+    let cartJson = JSON.parse(localStorage.getItem('cart'));
+    cartJson.forEach(e =>{
+      if(e['productId'] === productId){
+        cartJson = cartJson.filter(e => e['productId'] !== productId);
+      }
+    });
+    $("#cart-details-container").empty();
+    cartJson.forEach(e=>{
+      $("#cart-details-container").append(
+              `
+               <div class="product-card data-product-id='${e['productId']}' border border-secondary border-3 rounded p-2 mb-2">
+                      <div class="product-name d-flex justify-content-between my-2">
+                        <span>${e['productName']}</span>
+                        <button type="button" class="btn btn-danger btn-remove-product-btn" data-product-id="${e['productId']}">X</button>
+                      </div>
+                      <div class="quantity-price-container py-2">
+                        <div class="quantity d-flex justify-content-between">
+                          <div>
+                            <button type="button" class="btn btn-secondary reduce-product-btn" data-product-id="${e['productId']}">-</button>
+                            <span class="mx-2 quantity">${e['quantity']}</span>
+                            <button type="button" class="btn btn-secondary increase-product-btn" data-product-id="${e['productId']}">+</button>
+                          </div>
+                          <span class="price py-2">${e['productPrice']} $</span>
+                        </div>
+                      </div>
+                      <div class="total-price py-2">
+                      ${e['productPrice']*e['quantity']} $
+                      </div>
+                    </div>
+        `
+      );
+    });
+    $(".total-quantity-text").text(cartJson.reduce((a, b) => a + b['quantity'], 0));
+    $(".total-price-text").text(cartJson.reduce((a, b) => a + b['quantity']*b['productPrice'], 0));
+    localStorage.setItem('cart', JSON.stringify(cartJson));
+  });
+
+  $("#customerPhone").on("keyup", function () {
+    const phone = $(this).val();
+    if(phone.length > 0){
+      $(".customer-dropdown-list").css("display", "block");
+        $(".customer-select-item").each(function () {
+            if($(this).attr("data-customer-phone").includes(phone)){
+              $(this).css("display", "block");
+            }
+            else{
+              $(this).css("display", "none");
+            }
+        });
+    }
+    else{
+      $(".customer-dropdown-list").css("display", "none");
+    }
+  });
+
+    $(".customer-dropdown-list").on("click", ".customer-select-item", function () {
+        const customerId = $(this).attr("data-customer-id");
+        const customerPhone = $(this).attr("data-customer-phone");
+        const customerName = $(this).text();
+        $("#customerPhone").val(customerPhone);
+        $("#customerId").val(customerId);
+        $("#customerName").val(customerName);
+        $(".customer-dropdown-list").css("display", "none");
+    });
+
+    $("#add-customer-btn").on("click", function () {
+        $("#customerModal").modal("show");
+        $("#customer-modal-form").attr("action", "/customer/addForPurchase");
+        $("#customer-modal-form").attr("method", "POST");
+        $("#modal-btn-add-customer").css("display", "block");
+        $("#modal-btn-edit-customer").css("display", "none");
+        $("#cus-id").val("");
+        $("#cus-name").val("");
+        $("#cus-address").val("");
+        $("#cus-phone").val("");
+    });
+
+  function clearCart(){
+    localStorage.removeItem('cart');
+    const cartJson = [];
+    $(".total-quantity-text").text(cartJson.reduce((a, b) => a + b['quantity'], 0));
+    $(".total-price-text").text(cartJson.reduce((a, b) => a + b['quantity']*b['productPrice'], 0));
+    $("#cart-details-container").empty();
+    localStorage.setItem('cart', JSON.stringify(cartJson));
+  }
+
+  function purchase(){
+    const cartJson = JSON.parse(localStorage.getItem('cart'));
+    const customerId = $("#customerId").val();
+    const salespersonId = $("#salesperson-purchase-id-input").val();
+    if(cartJson.length === 0){
+      $("#modal-error-message").text("Please add product to cart");
+      $("#error-modal").modal("show");
+      return;
+    }
+    if(customerId === null || customerId === ""){
+      $("#modal-error-message").text("Please add customer");
+      $("#error-modal").modal("show");
+      return;
+    }
+    if(salespersonId === null || salespersonId === ""){
+      $("#modal-error-message").text("Please login again");
+      $("#error-modal").modal("show");
+      return;
+    }
+
+    $("#customer-price-modal").modal("show");
+    $("#total-cart-price-txt").text("Total needs to pay: " + cartJson.reduce((a, b) => a + b['quantity']*b['productPrice'], 0) + "$");
+    $("#customer-price-input").val("");
+    $(".btn-pay-for-btn").on("click", function () {
+        const customerPayment = $("#customer-price-input").val();
+        if(customerPayment === null || customerPayment === ""){
+          $("#customer-price-modal").modal("hide");
+          $("#modal-error-message").text("Please enter customer payment");
+            $("#error-modal").modal("show");
+            return;
+        }
+        if(customerPayment < cartJson.reduce((a, b) => a + b['quantity']*b['productPrice'], 0)){
+          $("#customer-price-modal").modal("hide");
+            $("#modal-error-message").text("Customer payment is not enough");
+            $("#error-modal").modal("show");
+            return;
+        }
+        $.ajax({
+            url: "/invoice/add",
+            type: "POST",
+            headers: {
+            "Authorization": `${localStorage.getItem('token')}`,
+            "Content-Type": "application/json"
+            },
+            data: JSON.stringify({
+              customerId: customerId,
+              salespersonId: salespersonId,
+              customerPayment: customerPayment,
+              products: cartJson
+            }),
+            success: function (response) {
+              if(response['success']){
+                $("#customer-price-modal").modal("hide");
+                $("#modal-error-message").text(response['message']);
+                $("#error-modal").modal("show");
+                localStorage.removeItem('cart');
+                const cartJson = [];
+                $(".total-quantity-text").text(cartJson.reduce((a, b) => a + b['quantity'], 0));
+                $(".total-price-text").text(cartJson.reduce((a, b) => a + b['quantity']*b['productPrice'], 0));
+                $("#cart-details-container").empty();
+                localStorage.setItem('cart', JSON.stringify(cartJson));
+              }
+              else{
+                $("#customer-price-modal").modal("hide");
+                $("#modal-error-message").text(response['message']);
+                $("#error-modal").modal("show");
+              }
+            },
+            error: function (response) {
+              $("#customer-price-modal").modal("hide");
+              $("#modal-error-message").text("Purchase failed");
+              $("#error-modal").modal("show");
+            }
+        });
+    });
+  }
+
+  function removeToken(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('userJson');
+    localStorage.removeItem('role');
+    localStorage.removeItem('cart');
+    window.location.href = '/login';
+  }
+</script>
+</html>

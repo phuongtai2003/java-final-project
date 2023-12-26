@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="/images/logos/company-icon.png" />
+  <link rel="stylesheet" href="/css/styles.min.css" />
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/products.js"></script>
+  <script src="/js/index.js"></script>
+</head>
+
+<body>
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <aside class="left-sidebar">
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="/dashboard" class="text-nowrap logo-img">
+            <img src="/images/logos/company-icon.png" width="220" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Home</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-small-cap management-item">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">MANAGEMENT</span>
+            </li>
+            <li class="sidebar-item pos-item">
+              <a class="sidebar-link" href="/pos" aria-expanded="false">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+                <span class="hide-menu">Point Of Sale</span>
+              </a>
+            </li>
+            <li class="sidebar-item product-item">
+              <a class="sidebar-link" href="/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-package"></i>
+                </span>
+                <span class="hide-menu">Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item customer-item">
+              <a class="sidebar-link" href="/customer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+                <span class="hide-menu">Customer</span>
+              </a>
+            </li>
+            <li class="sidebar-item invoice-item">
+              <a class="sidebar-link" href="/invoice" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-invoice"></i>
+                </span>
+                <span class="hide-menu">Invoice</span>
+              </a>
+            </li>
+            <li class="nav-small-cap admin-item">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">ADMIN</span>
+            </li>
+            <li class="sidebar-item employee-item">
+              <a class="sidebar-link" href="/employee" aria-expanded="false">
+                <span>
+                  <i class="ti ti-lego"></i>
+                </span>
+                <span class="hide-menu">Employees</span>
+              </a>
+            </li>
+          </ul>
+          <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+            <div class="d-flex">
+              <div class="unlimited-access-title me-5">
+                <h6 class="fw-semibold fs-4 mb-6 text-dark w-85" id="hello-user-txt">Hi User</h6>
+                <a href="javascript:void(0)" onclick="removeToken()" target="_blank" class="btn btn-primary fs-2 fw-semibold mt-2 lh-sm">Sign Out</a>
+              </div>
+              <div class="unlimited-access-img">
+                <img src="/images/backgrounds/rocket.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </aside>
+    <div class="body-wrapper">
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                  <img id="personal-image" src="/images/profile/male-figure.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0);" onclick="removeToken()" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <div class="modal fade" id="deleteModal" tabindex="1" role="dialog" aria-labelledby="deleteStoreModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header d-flex align-items-center">
+              <h5 class="modal-title">Delete Product</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <span>Are you sure you want to delete product <strong id="product-name"></strong>?</span>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" id="delete-id-input" name="delete-product-id" value="">
+              <button id="btn-delete-product" class="btn btn-success rounded-pill px-4">Delete</button>
+              <button class="btn btn-danger rounded-pill px-4" data-bs-dismiss="modal"> Discard </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="alert alert-success alert-message text-center text-success" style="display: none"></div>
+        <div class="card">
+          <div class="card-body">
+            <div class="border-bottom title-part-padding">
+              <h4 class="card-title fw-semibold mb-2">Shop list</h4>
+            </div>
+            <div class="mt-4 widget-content searchable-container list">
+              <div class="row">
+                <div class="col-md-4 col-xl-3">
+                  <form class="position-relative">
+                    <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Search Products...">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                  </form>
+                </div>
+                <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
+                    <a href="/products/add" id="btn-add-product" class="btn btn-primary d-flex align-items-center">
+                      <i class="ti ti-package text-white me-2 fs-5"></i> Add New Product
+                    </a>
+                </div>
+              </div>
+              <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header d-flex align-items-center">
+                      <h5 class="modal-title">Product</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="add-contact-box">
+                        <div class="add-contact-content">
+                          <form id="addProductModalTitle">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="mb-3 product-name">
+                                  <input type="text" id="p-name" class="form-control" placeholder="Product name">
+                                  <span class="validation-text text-danger"></span>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="btn-group mb-2">
+                                  <button class="btn dropdown-toggle category" type="button" id="dropdownCategory" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Category
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownCategory" id="p-category">
+                                    <li>
+                                      <a class="dropdown-item" aria-valuetext="Book" href="#">Book</a>
+                                    </li>
+                                    <li>
+                                      <a class="dropdown-item" aria-valuetext="Phone" href="#">Phone</a>
+                                    </li>
+                                    <li>
+                                      <a class="dropdown-item" aria-valuetext="Laptop" href="#">Laptop</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="mb-3 product-retail">
+                                  <input type="text" id="p-retail" class="form-control" placeholder="Retail Price">
+                                  <span class="validation-text text-danger"></span>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="mb-3 product-import-price">
+                                  <input type="text" id="p-import" class="form-control" placeholder="Import Price">
+                                  <span class="validation-text text-danger"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="mb-3 product-date">
+                                  <input type="date" id="p-date" class="form-control" placeholder="Creation Date">
+                                  <span class="validation-text text-danger"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button id="btn-add" class="btn btn-success rounded-pill px-4">Add</button>
+                      <button id="btn-edit" class="btn btn-success rounded-pill px-4">Save</button>
+                      <button class="btn btn-danger rounded-pill px-4" data-bs-dismiss="modal"> Discard </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="table-responsive">
+                <table class="table search-table align-middle text-nowrap">
+                  <thead class="header-item text-dark-emphasis">
+                  <tr>
+                    <th class="fs-4">QR Code</th>
+                    <th class="fs-4">Product Name</th>
+                    <th class="fs-4">Import Price</th>
+                    <th class="fs-4">Retail Price</th>
+                    <th class="fs-4">Category</th>
+                    <th class="fs-4">Creation Date</th>
+                    <th class="fs-4">Action</th>
+                  </tr></thead>
+                  <tbody id="table-body-items">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/sidebarmenu.js"></script>
+  <script src="/js/app.min.js"></script>
+  <script src="/libs/simplebar/dist/simplebar.js"></script>
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem('userJson'));
+    $("#personal-image").attr("src", currentUser['image']);
+    $("#hello-user-txt").text(`Hi ${currentUser['name']}`);
+
+    if(localStorage.getItem('token') === null) {
+      window.location.href = '/login';
+    }
+    else{
+      $.ajax(
+              {
+                type: 'POST',
+                url: '/api/token/checkToken',
+                headers: {
+                  "Authorization": `${localStorage.getItem('token')}`,
+                  "Content-Type":"application/json"
+                },
+                success: function (response) {
+                  if(!response['success']){
+                    window.location.href = "/login";
+                  }
+                  else if(response['data']['role'] !== "salesperson" && response['data']['role'] !== "admin"){
+                    window.location.href = "/login";
+                  }
+                  else{
+                    const storeId = response['data']['storeId'];
+                    $.ajax({
+                      url: `/products/${storeId}`,
+                      type: "GET",
+                        headers: {
+                            "Authorization": `${localStorage.getItem('token')}`,
+                            "Content-Type":"application/json"
+                        },
+                        success: function (response) {
+                            $("#table-body-items").empty();
+                            const role = localStorage.getItem('role');
+                            response['data'].forEach(e=>{
+                              const categories = e['categories'].map(e=>e['categoryName']).join(', ');
+                              $("#table-body-items").append(
+                                      `
+                    <tr class="search-items">
+                    <td>
+                      <img style="width: 10vw" src="${e['barcode']}" alt="QR Code">
+                    </td>
+                    <td>${e['name']}</td>
+                    <td>${role === "admin"? e['importPrice'] : "None"}</td>
+                    <td>${e['retailPrice']}</td>
+                    <td>${categories}</td>
+                    <td>${e['dateCreated']}</td>
+                    <td>
+                        ${role === "admin" ? `<div class="action-btn">
+                        <a href="products/edit/${e['id']}" class="text-dark edit ms-2">
+                          <i class="ti ti-eye fs-5"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-danger delete ms-2" data-product-id="${e['id']}" data-product-name="${e['name']}">
+                          <i class="ti ti-trash fs-5"></i>
+                        </a>
+                      </div>` : `None`}
+                    </td>
+                  </tr>
+`
+                              )
+                            });
+                        },
+                    })
+                  }
+                },
+                error: function (response) {
+                  window.location.href = "/login";
+                }
+              }
+      );
+    }
+
+    function removeToken(){
+      localStorage.removeItem("token");
+      localStorage.removeItem('userJson');
+      localStorage.removeItem('role');
+      localStorage.removeItem('cart');
+      window.location.href = "/login";
+    }
+
+    $("#table-body-items").on("click", ".delete", function () {
+      const productId = $(this).data("product-id");
+      const productName = $(this).data("product-name");
+        $("#delete-id-input").val(productId);
+        $("#product-name").text(productName);
+        $("#deleteModal").modal("show");
+    });
+
+    $("#btn-delete-product").on("click", function () {
+      const productId = $("#delete-id-input").val();
+      $.ajax({
+        url: `/products/delete/${productId}`,
+        type: "DELETE",
+        headers: {
+          "Authorization": `${localStorage.getItem('token')}`,
+          "Content-Type":"application/json"
+        },
+        success: function (response) {
+          $("#deleteModal").modal("hide");
+          $(".alert-message").css("display", "block");
+          $(".alert-message").text(response['message']);
+          $.ajax(
+                  {
+                    type: 'POST',
+                    url: '/api/token/checkToken',
+                    headers: {
+                      "Authorization": `${localStorage.getItem('token')}`,
+                      "Content-Type":"application/json"
+                    },
+                    success: function (response) {
+                      if(!response['success']){
+                        window.location.href = "/login";
+                      }
+                      else if(response['data']['role'] !== "salesperson" && response['data']['role'] !== "admin"){
+                        window.location.href = "/login";
+                      }
+                      else{
+                        const storeId = response['data']['storeId'];
+                        $.ajax({
+                          url: `/products/${storeId}`,
+                          type: "GET",
+                          headers: {
+                            "Authorization": `${localStorage.getItem('token')}`,
+                            "Content-Type":"application/json"
+                          },
+                          success: function (response) {
+                            $("#table-body-items").empty();
+                            const role = localStorage.getItem('role');
+                            response['data'].forEach(e=>{
+                              const categories = e['categories'].map(e=>e['categoryName']).join(', ');
+                              $("#table-body-items").append(
+                                      `
+                    <tr class="search-items">
+                    <td>
+                      <img style="width: 10vw" src="${e['barcode']}" alt="QR Code">
+                    </td>
+                    <td>${e['name']}</td>
+                    <td>${role === "admin"? e['importPrice'] : "None"}</td>
+                    <td>${e['retailPrice']}</td>
+                    <td>${categories}</td>
+                    <td>${e['dateCreated']}</td>
+                    <td>
+                        ${role === "admin" ? `<div class="action-btn">
+                        <a href="products/edit/${e['id']}" class="text-dark edit ms-2">
+                          <i class="ti ti-eye fs-5"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-danger delete ms-2" data-product-id="${e['id']}" data-product-name="${e['name']}">
+                          <i class="ti ti-trash fs-5"></i>
+                        </a>
+                      </div>` : `None`}
+                    </td>
+                  </tr>
+`
+                              )
+                            });
+                          },
+                        })
+                      }
+                    },
+                    error: function (response) {
+                      window.location.href = "/login";
+                    }
+                  }
+          );
+        },
+        error: function (response) {
+          $("#deleteModal").modal("hide");
+          $(".alert-message").css("display", "block");
+          $(".alert-message").text("Something went wrong");
+        }
+      })
+    });
+  </script>
+</body>
+
+</html>
