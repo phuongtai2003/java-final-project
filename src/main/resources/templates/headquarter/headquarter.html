@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Headquarter</title>
+    <link rel="shortcut icon" type="image/png" href="/images/logos/mkt-logo.png" />
+    <link rel="stylesheet" href="/css/styles.min.css" />
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/headquarter.js"></script>
+</head>
+
+<body>
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
+    <aside class="left-sidebar">
+        <div>
+            <div class="brand-logo d-flex align-items-center justify-content-between">
+                <a href="/dashboard" class="text-nowrap logo-img">
+                    <img src="/images/logos/mkt-logo-hor.png" width="220" alt="" />
+                </a>
+                <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                    <i class="ti ti-x fs-8"></i>
+                </div>
+            </div>
+            <!-- Sidebar navigation-->
+            <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                <ul id="sidebarnav">
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">HEADQUARTER</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/headquarter" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-shopping-cart"></i>
+                        </span>
+                        <span class="hide-menu">Retail Stores</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/headquarter/inventory" aria-expanded="false">
+                <span>
+                  <i class="ti ti-package"></i>
+                </span>
+                            <span class="hide-menu">Inventory</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/headquarter/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+                            <span class="hide-menu">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">ANALYSIS</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/headquarter/analysis" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-lego"></i>
+                        </span>
+                    <span class="hide-menu">Analysis</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+                    <div class="d-flex">
+                        <div class="unlimited-access-title me-5">
+                            <h6 class="fw-semibold fs-4 mb-6 text-dark w-85 username-text">Hi User</h6>
+                            <a href="javascript:void(0)" onclick="removeToken()" target="_blank" class="btn btn-primary fs-2 fw-semibold mt-2 lh-sm">Sign Out</a>
+                        </div>
+                        <div class="unlimited-access-img">
+                            <img src="/images/backgrounds/rocket.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+        <!--  Header Start -->
+        <header class="app-header">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item d-block d-xl-none">
+                        <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                    <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="/images/profile/male-figure.jpg" alt="" width="35" height="35" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                                <div class="message-body">
+                                    <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
+                                        <i class="ti ti-user fs-6"></i>
+                                        <p class="mb-0 fs-3">My Profile</p>
+                                    </a>
+                                    <a href="#" class="btn btn-outline-primary mx-3 mt-2 d-block" onclick="removeToken()">Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="modal fade" id="deleteModal" tabindex="1" role="dialog" aria-labelledby="deleteStoreModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header d-flex align-items-center">
+                        <h5 class="modal-title">Delete Retail Store</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <span>Are you sure you want to delete <strong id="store-name"></strong>?</span>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="delete-store-id" name="delete-store-id" value="">
+                        <button id="btn-delete-store" class="btn btn-success rounded-pill px-4">Delete</button>
+                        <button class="btn btn-danger rounded-pill px-4" data-bs-dismiss="modal"> Discard </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  Header End -->
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="border-bottom title-part-padding">
+                        <h4 class="card-title fw-semibold mb-2">Retail Stores</h4>
+                    </div>
+                    <div class="mt-4 widget-content searchable-container list">
+                        <div class="row">
+                            <div class="col-md-4 col-xl-3">
+                                <form class="position-relative">
+                                    <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Search Retails Store">
+                                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                                </form>
+                            </div>
+                            <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
+                                <div class="action-btn show-btn" style="display: none">
+                                    <a href="javascript:void(0)" class="delete-multiple bg-danger-subtle btn me-2 text-danger d-flex align-items-center font-medium">
+                                        <i class="ti ti-trash text-danger me-1 fs-5"></i> Delete All Stores
+                                    </a>
+                                </div>
+                                <a href="/headquarter/add" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
+                                    <i class="ti ti-users text-white me-1 fs-5"></i> Add Store
+                                </a>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table search-table align-middle text-nowrap">
+                                <thead class="header-item">
+                                <tr>
+                                    <th>Manager</th>
+                                    <th>Address</th>
+                                    <th>Store Name</th>
+                                    <th>Phone</th>
+                                    <th>Action</th>
+                                </tr></thead>
+                                <tbody>
+                                <!-- start row -->
+                                <tr th:each="store: ${stores}" class="search-items">
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img th:src="${store.getImage()}" alt="avatar" class="rounded-circle" width="35">
+                                            <div class="ms-3">
+                                                <div class="manager-data-info">
+                                                    <h6 class="user-name mb-0" th:text="${store.getName()}" th:attr="data-name=${store.getName()}"></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="store-address-info" th:text="${store.getStore().getAddress()}" th:attr="data-address-name=${store.getStore().getAddress()}"></span>
+                                    </td>
+                                    <td>
+                                        <span class="store-name-info" th:text="${store.getStore().getStoreName()}" th:attr="data-store-name=${store.getStore().getStoreName()}"></span>
+                                    </td>
+                                    <td>
+                                        <span class="usr-ph-no" th:text="${store.getPhone()}" th:attr="data-phone=${store.getPhone()}"></span>
+                                    </td>
+                                    <td>
+                                        <div class="action-btn flex gap-2 align-items-center">
+                                            <a th:href="${'headquarter/edit/' + store.getId()}" class="text-dark edit ms-2">
+                                                <i class="ti ti-eye fs-5"></i>
+                                            </a>
+                                            <button data-toggle="modal" th:attr="onclick='openDeleteModal(' + ${store.getId()} + ',\'' + ${store.getStore().getStoreName()} + '\')'" data-target="#deleteModal" class="btn btn-danger ms-2">
+                                                <i class="ti ti-trash fs-5"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- end row -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/libs/jquery/dist/jquery.min.js"></script>
+<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/sidebarmenu.js"></script>
+<script src="/js/app.min.js"></script>
+<script src="/libs/simplebar/dist/simplebar.js"></script>
+</body>
+
+<script>
+    if(localStorage.getItem("token") === null){
+        window.location.href = "/headquarter/login";
+    }
+    else{
+        $.ajax({
+            type: "POST",
+            url: "/api/token/checkToken",
+            headers: {
+                "Authorization": `${localStorage.getItem('token')}`,
+                "Content-Type":"application/json"
+            },
+            success: function (response) {
+                if(!response['success'] || response['data']['role'] !== "headquarter"){
+                    window.location.href = "/headquarter/login";
+                }
+                $(".username-text").text(`Hi ${response['data']['username']}`);
+            },
+        })
+    }
+    
+    function removeToken() {
+        localStorage.removeItem("token");
+        localStorage.removeItem('userJson');
+        localStorage.removeItem('role');
+        localStorage.removeItem('cart');
+        window.location.href = "/headquarter/login";
+    }
+
+    function openDeleteModal(storeId, storeName) {
+        $("#deleteModal").modal("show");
+        $("#delete-store-id").val(storeId);
+        $("#store-name").text(storeName);
+    }
+
+    $("#btn-delete-store").on('click', function () {
+        let storeId = $("#delete-store-id").val();
+        $.ajax({
+            type: "DELETE",
+            url: `/headquarter/delete/${storeId}`,
+            headers: {
+                "Authorization": `${localStorage.getItem('token')}`,
+                "Content-Type":"application/json"
+            },
+            success: function (response) {
+                $("#deleteModal").modal("hide");
+                if(response['success']){
+                    window.location.href = "/headquarter";
+                }
+                else{
+                    alert(response['message']);
+                }
+            },
+        });
+    })
+</script>
+
+</html>

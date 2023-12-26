@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="/images/logos/mkt-logo.png" />
+  <link rel="stylesheet" href="/css/styles.min.css" />
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/index.js"></script>
+</head>
+
+<body>
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
+  <!-- Sidebar Start -->
+  <aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div>
+      <div class="brand-logo d-flex align-items-center justify-content-between">
+        <a href="/dashboard" class="text-nowrap logo-img">
+          <img src="/images/logos/mkt-logo-hor.png" width="220" alt="" />
+        </a>
+        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+          <i class="ti ti-x fs-8"></i>
+        </div>
+      </div>
+      <!-- Sidebar navigation-->
+      <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+        <ul id="sidebarnav">
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Home</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+              <span class="hide-menu">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-small-cap management-item">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">MANAGEMENT</span>
+          </li>
+          <li class="sidebar-item pos-item">
+            <a class="sidebar-link" href="/pos" aria-expanded="false">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+              <span class="hide-menu">Point Of Sale</span>
+            </a>
+          </li>
+          <li class="sidebar-item product-item">
+            <a class="sidebar-link" href="/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-package"></i>
+                </span>
+              <span class="hide-menu">Products</span>
+            </a>
+          </li>
+          <li class="sidebar-item customer-item">
+            <a class="sidebar-link" href="/customer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+              <span class="hide-menu">Customer</span>
+            </a>
+          </li>
+          <li class="sidebar-item invoice-item">
+            <a class="sidebar-link" href="/invoice" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-invoice"></i>
+                </span>
+              <span class="hide-menu">Invoice</span>
+            </a>
+          </li>
+          <li class="nav-small-cap admin-item">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">ADMIN</span>
+          </li>
+          <li class="sidebar-item employee-item">
+            <a class="sidebar-link" href="/employee" aria-expanded="false">
+                <span>
+                  <i class="ti ti-lego"></i>
+                </span>
+              <span class="hide-menu">Employees</span>
+            </a>
+          </li>
+        </ul>
+        <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+          <div class="d-flex">
+            <div class="unlimited-access-title me-5">
+              <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Hi User</h6>
+              <a href="javascript:void(0)" onclick="removeToken()" target="_blank" class="btn btn-primary fs-2 fw-semibold mt-2 lh-sm">Sign Out</a>
+            </div>
+            <div class="unlimited-access-img">
+              <img src="/images/backgrounds/rocket.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+  </aside>
+  <!--  Sidebar End -->
+  <!--  Main wrapper -->
+  <div class="body-wrapper">
+    <!--  Header Start -->
+    <header class="app-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <ul class="navbar-nav">
+          <li class="nav-item d-block d-xl-none">
+            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+              <i class="ti ti-menu-2"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+              <i class="ti ti-bell-ringing"></i>
+              <div class="notification bg-primary rounded-circle"></div>
+            </a>
+          </li>
+        </ul>
+        <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+          <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+            <li class="nav-item dropdown">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                 aria-expanded="false">
+                <img src="/images/profile/male-figure.jpg" id="current-image" alt="" width="35" height="35" class="rounded-circle">
+              </a>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                <div class="message-body">
+                  <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
+                    <i class="ti ti-user fs-6"></i>
+                    <p class="mb-0 fs-3">My Profile</p>
+                  </a>
+                  <a href="javascript:void(0);" onclick="removeToken()" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!--  Header End -->
+    <div class="container-fluid">
+      <form method="post" action="/employee/update" enctype="multipart/form-data">
+        <input type="hidden" id="employee-id" name="employeeId">
+      <div class="card">
+        <div class="card-body">
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab" tabindex="0">
+              <div class="error-alert alert alert-danger text-danger text-center w-100" style="display: none"></div>
+              <div class="successful-alert alert alert-success text-success text-center w-100" style="display: none"></div>
+              <div class="row">
+                <div class="col-lg-6 d-flex align-items-stretch">
+                  <div class="card w-100 position-relative overflow-hidden">
+                    <div class="card-body p-4">
+                      <h5 class="card-title fw-semibold">Change Picture</h5>
+                      <p class="card-subtitle mb-4">Change your profile picture here!</p>
+                      <div class="text-center">
+                        <input type="file" name="image" accept="image/png, image/jpg, image/gif" hidden="hidden" id="personal-file-input">
+                        <img id="personal-image" src="/images/profile/male-figure.jpg" alt="" class="img-fluid rounded-circle" width="120" height="120">
+                        <div class="d-flex align-items-center justify-content-center my-4 gap-3">
+                          <label for="personal-file-input" class="btn btn-primary">Upload</label>
+                        </div>
+                        <p class="mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 d-flex align-items-stretch">
+                  <div class="card w-100 position-relative overflow-hidden">
+                    <div class="card-body p-4">
+                      <h5 class="card-title fw-semibold">Change Password</h5>
+                      <p class="card-subtitle mb-4">To change your password please confirm here!</p>
+                        <div class="mb-4">
+                          <label for="password-input" class="form-label fw-semibold">Current Password</label>
+                          <input name="password" type="password" class="form-control" id="password-input" value="12345678910">
+                        </div>
+                        <div class="mb-4">
+                          <label for="new-password-input" class="form-label fw-semibold">New Password</label>
+                          <input name="newPassword" type="password" class="form-control" id="new-password-input" value="12345678910">
+                        </div>
+                        <div class="">
+                          <label for="new-password-confirm-input" class="form-label fw-semibold">Confirm Password</label>
+                          <input name="newPasswordConfirm" type="password" class="form-control" id="new-password-confirm-input" value="12345678910">
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="card w-100 position-relative overflow-hidden mb-0">
+                    <div class="card-body p-4">
+                      <h5 class="card-title fw-semibold">Personal Details</h5>
+                      <p class="card-subtitle mb-4">Your personal information here!</p>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="mb-4">
+                              <label for="name" class="form-label fw-semibold">Your Name</label>
+                              <input readonly type="text" class="form-control" id="name" placeholder="Mai Gia Minh">
+                            </div>
+                            <div class="mb-4">
+                              <label class="form-label fw-semibold">Gender</label>
+                              <input type="text" readonly class="form-control" id="gender">
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="mb-4">
+                              <label for="address" class="form-label fw-semibold">Your Address</label>
+                              <input readonly type="text" class="form-control" id="address" placeholder="Quan 7, TP. Ho Chi Minh">
+                            </div>
+                            <div class="mb-4">
+                              <label for="phone" class="form-label fw-semibold">Your Phone</label>
+                              <input  readonly type="text" class="form-control" id="phone" placeholder="09090909090">
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="d-flex align-items-center justify-content-end mt-4 gap-3">
+                              <button type="button" onclick="submitUpdate()" class="btn btn-primary">Save</button>
+                              <a href="/dashboard" class="btn bg-danger-subtle text-danger">Cancel</a>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="/libs/jquery/dist/jquery.min.js"></script>
+<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/sidebarmenu.js"></script>
+<script src="/js/app.min.js"></script>
+<script src="/libs/simplebar/dist/simplebar.js"></script>
+</body>
+
+<script>
+    $(document).ready(function () {
+      const currentUser = JSON.parse(localStorage.getItem("userJson"));
+      $("#current-image").attr("src", currentUser['image']);
+      $("#phone").attr("placeholder", currentUser['phone']);
+      $("#address").attr("placeholder", currentUser['address']);
+      $("#name").attr("placeholder", currentUser['name']);
+      $("#gender").attr("placeholder", currentUser['gender']);
+      $("#personal-image").attr("src", currentUser['image']);
+      $("#employee-id").val(currentUser['id']);
+    });
+
+    function removeToken(){
+        localStorage.removeItem("userJson");
+        localStorage.removeItem("token");
+        localStorage.removeItem("cart");
+        localStorage.removeItem("role");
+        window.location.href = "/login";
+    }
+
+    document.getElementById('personal-file-input').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        const imagePreview = document.getElementById('personal-image');
+        imagePreview.src = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    function submitUpdate(){
+      const formData = new FormData();
+        const employeeId = $("#employee-id").val();
+        const password = $("#password-input").val();
+        const newPassword = $("#new-password-input").val();
+        const newPasswordConfirm = $("#new-password-confirm-input").val();
+        const role = localStorage.getItem("role");
+
+        formData.append("employeeId", employeeId);
+        formData.append("password", password);
+        formData.append("newPassword", newPassword);
+        formData.append("newPasswordConfirm", newPasswordConfirm);
+        if($("#personal-file-input")[0].files[0] !== undefined){
+          formData.append("image", $("#personal-file-input")[0].files[0]);
+        }
+
+      role === "salesperson" ? $.ajax({
+        url: '/employee/update',  // Replace with your server endpoint
+        type: 'POST',
+        data: formData,
+        contentType: false,  // Important for FormData
+        processData: false,  // Important for FormData
+        success: function(response) {
+          if(response['success']){
+            $(".successful-alert").text(response['message']);
+            $(".successful-alert").show();
+            $(".error-alert").hide();
+            localStorage.setItem("userJson", JSON.stringify(response['data']));
+            $("#personal-image").attr("src", response['data']['image']);
+          }
+          else{
+            $(".error-alert").text(response['message']);
+            $(".error-alert").show();
+            $(".successful-alert").hide();
+          }
+        },
+        error: function(xhr, status, error) {
+          console.log('An error occurred: ' + error);
+        }
+      }) : $.ajax({
+        url: '/manager/update',  // Replace with your server endpoint
+        type: 'POST',
+        data: formData,
+        contentType: false,  // Important for FormData
+        processData: false,  // Important for FormData
+        success: function(response) {
+          if(response['success']){
+            $(".successful-alert").text(response['message']);
+            $(".successful-alert").show();
+            $(".error-alert").hide();
+            localStorage.setItem("userJson", JSON.stringify(response['data']));
+            $("#personal-image").attr("src", response['data']['image']);
+          }
+          else{
+            $(".error-alert").text(response['message']);
+            $(".error-alert").show();
+            $(".successful-alert").hide();
+          }
+        },
+        error: function(xhr, status, error) {
+          console.log('An error occurred: ' + error);
+        }
+      });
+    }
+
+</script>
+
+</html>

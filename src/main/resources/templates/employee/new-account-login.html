@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project Java Technology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/login-style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://kit.fontawesome.com/ea9f34d5b1.js" crossorigin="anonymous"></script>
+
+</head>
+<body class="login">
+<header>
+    <nav class="navbar">
+        <span class="hamburger-btn material-symbols-rounded">menu</span>
+        <a href="#" class="logo">
+            <img src="/images/logos/mkt-logo.png" alt="logo">
+            <h2>MKT Technologies Corp</h2>
+        </a>
+        <ul class="links">
+            <span class="close-btn material-symbols-rounded">X</span>
+            <!--            <li><a href="#">Home</a></li>-->
+            <li class="modal-btn">
+                <a href="#">About us</a>
+            </li>
+            <!--            <li><a href="#">Contact us</a></li>-->
+        </ul>
+        <button class="login-btn">LOG IN</button>
+    </nav>
+</header>
+<div class="blur-bg-overlay"></div>
+<div class="form-popup">
+    <span class="close-btn material-symbols-rounded">X</span>
+    <div class="form-box login">
+        <div class="form-details">
+            <h2>Welcome Back</h2>
+            <p>Please log in using your new account.</p>
+        </div>
+        <div class="form-content">
+            <h2>LOGIN</h2>
+            <form id="loginForm" action="#" method="POST">
+                <div class="input-field">
+                    <input id="username" type="text" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-field">
+                    <input id="password" type="password" required>
+                    <label>Password</label>
+                </div>
+                <button type="button" onclick="submitForm()">Log In</button>
+            </form>
+        </div>
+    </div>
+    <section>
+        <span class="overlay"></span>
+        <div class="modal-authentication-box">
+            <i id="authentication-icon" class="fa-solid"></i>
+            <h2 id="authentication-title" style="text-align: center"></h2>
+            <h3 id="authentication-desc">.</h3>
+            <div class="buttons">
+                <button class="close-authentication-btn">Close</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="modal-popup">
+    <h1 class="modal-title">OUR TEAM</h1>
+    <div class="modal-content modal-box">
+        <div class="column">
+            <img src="/images/members/member1.png" alt="Member 1" class="memberImg">
+            <p>Member 1</p>
+        </div>
+
+        <div class="column">
+            <img src="/images/members/member2.jpg" alt="Member 2" class="memberImg">
+            <p>Member 2</p>
+        </div>
+
+        <div class="column">
+            <img src="/images/members/member3.jpg" alt="Member 3" class="memberImg">
+            <p>Member 3</p>
+        </div>
+        <span class="close-btn material-symbols-rounded">X</span>
+    </div>
+</div>
+<script src="/js/login.js"></script>
+<script>
+    const params = new URLSearchParams(window.location.search);
+
+    const token = params.get('token');
+
+    function submitForm() {
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+
+        const data = {
+            username,
+            password,
+            token
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/loginNewAccount",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (response) {
+                if(response['token'] !== null){
+                    localStorage.setItem("userJson", JSON.stringify(response['data']));
+                    localStorage.setItem("token", response['token']);
+                    localStorage.setItem("role", response['role']);
+                    openOnSuccessModal(response['data']['name']);
+                }
+            },
+            error: function (error) {
+                console.error("Error:", error);
+            }
+        });
+    }
+
+    function openOnSuccessModal(name) {
+        let counter = 1;
+        icon.classList.remove("fa-xmark");
+        icon.classList.add("fa-check");
+        title.textContent = "SUCCESSFUL";
+        desc.textContent = `${name} login success! Automatically redirects after 2 seconds.`;
+        section.classList.add("active")
+
+        timerInterval = setInterval(function () {
+            if (counter > 0) {
+                desc.textContent = `${name} login success! Automatically redirects after ${counter} seconds.`;
+                counter--;
+            } else {
+                clearInterval(timerInterval);
+                desc.textContent = 'Redirecting';
+                window.location.href = "/dashboard";
+            }
+        }, 1000);
+    }
+
+</script>
+
+</body>
+</html>

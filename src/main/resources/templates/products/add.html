@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="/images/logos/mkt-logo.png" />
+  <link rel="stylesheet" href="/css/styles.min.css" />
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/products.js"></script>
+</head>
+
+<body>
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
+  <!-- Sidebar Start -->
+  <aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div>
+      <div class="brand-logo d-flex align-items-center justify-content-between">
+        <a href="/dashboard" class="text-nowrap logo-img">
+          <img src="/images/logos/mkt-logo-hor.png" width="220" alt="" />
+        </a>
+        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+          <i class="ti ti-x fs-8"></i>
+        </div>
+      </div>
+      <!-- Sidebar navigation-->
+      <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+        <ul id="sidebarnav">
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Home</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+              <span class="hide-menu">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">MANAGEMENT</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/pos" aria-expanded="false">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+              <span class="hide-menu">Point Of Sale</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-package"></i>
+                </span>
+              <span class="hide-menu">Products</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/customer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+              <span class="hide-menu">Customer</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/invoice" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-invoice"></i>
+                </span>
+              <span class="hide-menu">Invoice</span>
+            </a>
+          </li>
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">ADMIN</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/employee" aria-expanded="false">
+                <span>
+                  <i class="ti ti-lego"></i>
+                </span>
+              <span class="hide-menu">Employees</span>
+            </a>
+          </li>
+        </ul>
+        <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+          <div class="d-flex">
+            <div class="unlimited-access-title me-5">
+              <h6 class="fw-semibold fs-4 mb-6 text-dark w-85" id="hello-user-txt">Hi User</h6>
+              <a href="/login" target="_blank" class="btn btn-primary fs-2 fw-semibold mt-2 lh-sm">Sign Out</a>
+            </div>
+            <div class="unlimited-access-img">
+              <img src="/images/backgrounds/rocket.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+  </aside>
+  <!--  Sidebar End -->
+  <!--  Main wrapper -->
+  <div class="body-wrapper">
+    <!--  Header Start -->
+    <header class="app-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <ul class="navbar-nav">
+          <li class="nav-item d-block d-xl-none">
+            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+              <i class="ti ti-menu-2"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+              <i class="ti ti-bell-ringing"></i>
+              <div class="notification bg-primary rounded-circle"></div>
+            </a>
+          </li>
+        </ul>
+        <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+          <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+            <li class="nav-item dropdown">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                 aria-expanded="false">
+                <img id="personal-image" src="/images/profile/male-figure.jpg" alt="" width="35" height="35" class="rounded-circle">
+              </a>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                <div class="message-body">
+                  <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
+                    <i class="ti ti-user fs-6"></i>
+                    <p class="mb-0 fs-3">My Profile</p>
+                  </a>
+                  <a href="javascript:void(0)" onclick="removeToken()" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!--  Header End -->
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <div class="border-bottom title-part-padding">
+            <h4 class="card-title fw-semibold mb-2" th:text="${product == null ? 'Add New Product' : 'Update Product'}">Add New Product</h4>
+          </div>
+          <div class="mt-4 widget-content searchable-container list">
+            <br>
+            <div class="table-responsive">
+              <table class="table search-table align-middle text-nowrap">
+                <div class="container">
+                  <div th:if="${successMessage != null}" th:text="${successMessage}" class="alert alert-success text-success text-center"></div>
+                  <div th:if="${errorMessage != null}" th:text="${errorMessage}" class="alert alert-danger text-danger text-center"></div>
+                  <form enctype="multipart/form-data" th:action="${product != null ? '/products/edit/'+ product.getId() : '/products/add'}" method="post">
+                    <input hidden name="storeId" id="store-id-input">
+                    <div class="mb-3">
+                      <label for="productName" class="form-label fs-4">Product Name:</label>
+                      <input th:value="${product!=null ? product.getName() : request != null ? request.getName() : ''}" type="text" class="form-control" id="productName" name="name" required>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="retailPrice" class="form-label fs-4">Description:</label>
+                      <textarea th:text="${product!=null ? product.getDescription() : request != null ? request.getDescription() : ''}" class="form-control" id="description" name="description" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="retailPrice" class="form-label fs-4">SKU:</label>
+                      <input th:value="${product!=null ? product.getSku() : request != null ? request.getSku() : ''}" type="text" class="form-control" id="sku" name="sku" required></input>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="importPrice" class="form-label fs-4">Import Price:</label>
+                      <input th:value="${product!=null ? product.getImportPrice() : request != null ? request.getImportPrice() : ''}" type="number" class="form-control" id="importPrice" name="importPrice" required>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="retailPrice" class="form-label fs-4">Retail Price:</label>
+                      <input th:value="${product!=null ? product.getRetailPrice() : request != null ? request.getRetailPrice() : ''}" type="number" class="form-control" id="retailPrice" name="retailPrice" required>
+                    </div>
+
+                    <div class="mb-3 flex gap-6">
+                      <span>Categories:</span>
+                      <div th:each="category : ${categories}" class="select-item" style="display: inline;">
+                        <input class="form-check-input" name="categories[]" type="checkbox" th:value="${category.getId()}" th:id="${category.getCategoryName().toLowerCase()}">
+                        <label class="form-check-label" th:for="${category.getCategoryName().toLowerCase()}" th:text="${category.getCategoryName()}"></label>
+                      </div>
+                    </div>
+
+                    <input id="products-images" name="images" multiple accept="image/png" type="file" hidden="hidden">
+                    <label for="products-images" class="btn btn-primary text-white mb-3">Click to select images</label>
+                    <div id="images-container" class="mb-3" th:style="${product == null ? 'display:none;': 'display:block'}">
+                      <div th:if="${product!=null}">
+                        <img style="height: 100px;" th:each="image : ${product.getImages()}" th:src="${image.getImage()}">
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary fs-4 d-block">
+                      <span th:if="${product != null}">Edit Product</span>
+                      <span th:if="${product == null}">Add Product</span>
+                    </button>
+                  </form>
+                </div>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/libs/jquery/dist/jquery.min.js"></script>
+<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/sidebarmenu.js"></script>
+<script src="/js/app.min.js"></script>
+<script src="/libs/simplebar/dist/simplebar.js"></script>
+<script>
+  const currentUser = JSON.parse(localStorage.getItem('userJson'));
+  $("#personal-image").attr("src", currentUser['image']);
+  $("#hello-user-txt").text(`Hi ${currentUser['name']}`);
+
+  document.getElementById('products-images').addEventListener('change', function(event) {
+    let imageContainer = document.getElementById('images-container');
+    imageContainer.style.display = 'block';
+    imageContainer.innerHTML = '';
+
+    let files = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+      let file = files[i];
+
+      if (file.type.startsWith('image/')) {
+        let img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.height = 100;
+        img.onload = function() {
+          URL.revokeObjectURL(img.src);
+        };
+
+        imageContainer.appendChild(img);
+      }
+    }
+  });
+
+  function removeToken(){
+    localStorage.removeItem("token");
+    localStorage.removeItem('userJson');
+    localStorage.removeItem('role');
+    localStorage.removeItem('cart');
+    window.location.href = "/login";
+  }
+
+  if(localStorage.getItem('token') === null) {
+    window.location.href = '/login';
+  }
+  else{
+    $.ajax(
+            {
+              type: 'POST',
+              url: '/api/token/checkToken',
+              headers: {
+                "Authorization": `${localStorage.getItem('token')}`,
+                "Content-Type":"application/json"
+              },
+              success: function (response) {
+                if(!response['success']){
+                  window.location.href = "/login";
+                }
+                else if(response['data']['role'] !== "salesperson" && response['data']['role'] !== "admin"){
+                  window.location.href = "/login";
+                }
+                else{
+                  $("#store-id-input").val(response['data']['storeId']);
+                  if(response['data']['role'] === "salesperson"){
+                    const currentUser = JSON.parse(localStorage.getItem("userJson"));
+                    if(currentUser['hasChangedPassword'] === false){
+                      $(".management-item").css("display", "none");
+                      $(".pos-item").css("display", "none");
+                      $(".customer-item").css("display", "none");
+                      $(".invoice-item").css("display", "none");
+                    }
+                    $(".employee-item").css("display", "none");
+                    $(".product-item").css("display", "none");
+                    $(".admin-item").css("display", "none");
+                  }
+                }
+              },
+              error: function (response) {
+                window.location.href = "/login";
+              }
+            }
+    )
+  }
+</script>
+</body>
+
+</html>

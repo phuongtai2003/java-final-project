@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="/images/logos/mkt-logo.png" />
+  <link rel="stylesheet" href="/css/styles.min.css" />
+  <script src="/js/jquery.min.js"></script>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="/dashboard" class="text-nowrap logo-img">
+            <img src="/images/logos/mkt-logo-hor.png" width="220" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Home</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">MANAGEMENT</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/pos" aria-expanded="false">
+                <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span>
+                <span class="hide-menu">Point Of Sale</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-package"></i>
+                </span>
+                <span class="hide-menu">Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/customer" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+                <span class="hide-menu">Customer</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/invoice" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-invoice"></i>
+                </span>
+                <span class="hide-menu">Invoice</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">ADMIN</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/employee" aria-expanded="false">
+                <span>
+                  <i class="ti ti-lego"></i>
+                </span>
+                <span class="hide-menu">Employees</span>
+              </a>
+            </li>
+          </ul>
+          <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+            <div class="d-flex">
+              <div class="unlimited-access-title me-5">
+                <h6 class="fw-semibold fs-4 mb-6 text-dark w-85 hi-user-txt">Hi User</h6>
+                <a href="javascript:void(0);" onclick="removeToken()" target="_blank" class="btn btn-primary fs-2 fw-semibold mt-2 lh-sm">Sign Out</a>
+              </div>
+              <div class="unlimited-access-img">
+                <img src="/images/backgrounds/rocket.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                <i class="ti ti-bell-ringing"></i>
+                <div class="notification bg-primary rounded-circle"></div>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                  <img src="/images/profile/male-figure.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0);" onclick="removeToken()" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      <div class="modal fade" id="deleteModal" tabindex="1" role="dialog" aria-labelledby="deleteStoreModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header d-flex align-items-center">
+              <h5 class="modal-title">Delete Employee</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <span>Are you sure you want to delete employee <strong id="employee-name"></strong>?</span>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" id="delete-id-input" name="delete-employee-id" value="">
+              <button id="btn-delete-employee" class="btn btn-success rounded-pill px-4">Delete</button>
+              <button class="btn btn-danger rounded-pill px-4" data-bs-dismiss="modal"> Discard </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <div class="border-bottom title-part-padding">
+              <h4 class="card-title fw-semibold mb-2">Salesperson list</h4>
+            </div>
+            <div class="mt-4 widget-content searchable-container list">
+              <div class="row">
+                <div class="col-md-4 col-xl-3">
+                  <form class="position-relative">
+                    <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Search Salesperson">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                  </form>
+                </div>
+                <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
+                  <div class="action-btn show-btn" style="display: none">
+                    <a href="javascript:void(0)" class="delete-multiple bg-danger-subtle btn me-2 text-danger d-flex align-items-center font-medium">
+                      <i class="ti ti-trash text-danger me-1 fs-5"></i> Delete All Row
+                    </a>
+                  </div>
+                    <a href="/employee/add" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
+                      <i class="ti ti-users text-white me-1 fs-5"></i> Add Salesperson
+                    </a>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade" id="send-email-success-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header d-flex align-items-center">
+                      <h5 class="modal-title">Notification</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <span>Send email successfully</span>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal"> OK </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table search-table align-middle text-nowrap">
+                  <thead class="header-item">
+                  <tr>
+                    <th>Status</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Location</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody class="table-body-items">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/sidebarmenu.js"></script>
+  <script src="/js/app.min.js"></script>
+  <script src="/libs/simplebar/dist/simplebar.js"></script>
+</body>
+
+<script>
+  if(localStorage.getItem('token') === null) {
+    window.location.href = '/login';
+  }
+  else{
+    $.ajax(
+            {
+              type: 'POST',
+              url: '/api/token/checkToken',
+              headers: {
+                "Authorization": `${localStorage.getItem('token')}`,
+                "Content-Type":"application/json"
+              },
+              success: function (response) {
+                if(!response['success']){
+                  window.location.href = "/login";
+                }
+                else if(response['data']['role'] !== "salesperson" && response['data']['role'] !== "admin"){
+                  window.location.href = "/login";
+                }
+                else{
+                  $(".hi-user-txt").text(`Hi, ${response['data']['username']}`);
+                  $.ajax({
+                    type: "GET",
+                    url: `/employee/employees/${response['data']['storeId']}`,
+                    headers: {
+                      "Authorization": `${localStorage.getItem('token')}`,
+                      "Content-Type":"application/json"
+                    },
+                    success: function(response){
+                      console.log(response);
+                      response.forEach(item=>{
+                        $(".table-body-items").append(
+                                `
+                        <tr class="search-items">
+                    <td>
+                      <div class="n-chk align-self-center text-center">
+                        <i class="ti ${item['status'] === false ? 'ti-x' : 'ti-check'} fs-5"></i>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img src="${item['image']}" alt="avatar" class="rounded-circle" width="35">
+                        <div class="ms-3">
+                          <div class="user-meta-info">
+                            <h6 class="user-name mb-0" data-name="${item['name']}">${item['name']}</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="usr-email-addr" data-email="${item['email']}">${item['email']}</span>
+                    </td>
+                    <td>
+                      <span class="usr-location" data-location="${item['address']}">${item['address']}</span>
+                    </td>
+                    <td>
+                      <span class="usr-ph-no" data-phone="${item['phone']}">${item['phone']}</span>
+                    </td>
+                    <td>
+                      <div class="action-btn">
+                        <a href="javascript:void(0)" data-emp class="text-info mail" data-employee-id="${item['id']}">
+                          <i class="ti ti-mail fs-5"></i>
+                        </a>
+                        <a href="/employee/edit/${item['id']}" class="text-dark edit ms-2">
+                          <i class="ti ti-eye fs-5"></i>
+                        </a>
+                        <a href="javascript:void(0)" data-employee-id="${item['id']}" data-employee-name="${item['name']}" class="text-danger delete ms-2">
+                          <i class="ti ti-trash fs-5"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                              `
+                        );
+                      });
+                    }
+                  })
+
+                }
+              },
+              error: function (response) {
+                window.location.href = "/login";
+              }
+            }
+    );
+  }
+
+  function removeToken() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('cart');
+    localStorage.removeItem('userJson');
+    localStorage.removeItem('role');
+    window.location.href = "/login";
+  }
+  function showDeleteModal(employeeId, employeeName){
+    $("#delete-id-input").val(employeeId);
+    $("#employee-name").text(employeeName);
+    $("#deleteModal").modal('show');
+  }
+
+  $(".table-body-items").on("click", ".mail", function() {
+    const employeeId = $(this).data("employee-id");
+    $.ajax({
+        type: "GET",
+        url: `/employee/sendEmail/${employeeId}`,
+        headers: {
+            "Authorization": `${localStorage.getItem('token')}`,
+            "Content-Type":"application/json"
+        },
+        success: function(response){
+          if(response['success']){
+            $("#send-email-success-modal").modal('show');
+          }
+        }
+    });
+  });
+
+  $(".table-body-items").on("click", ".delete", function() {
+    const employeeId = $(this).data("employee-id");
+    const employeeName = $(this).data("employee-name");
+    showDeleteModal(employeeId, employeeName);
+  });
+
+
+  $("#btn-delete-employee").on("click", function (){
+    const deleteId = $("#delete-id-input").val();
+    $.ajax(`/employee/delete/${deleteId}`, {
+      type: "DELETE",
+      success: function (response){
+        if(response['success']){
+          window.location.href = "/employee";
+        }
+        else{
+            alert("Delete failed");
+        }
+      }
+    });
+  });
+
+</script>
+
+</html>
